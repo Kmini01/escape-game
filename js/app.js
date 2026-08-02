@@ -1,33 +1,34 @@
 // ==========================
 // MISSION : 칼퇴 대작전
-// Version 0.5
+// Version 1.0
 // Part 1
 // ==========================
 
 // --------------------------
-// 게임 데이터
+// 플레이어 정보
 // --------------------------
 
 let gender = "";
 let playerName = "";
 
-let game = {
+// --------------------------
+// 게임 상태
+// --------------------------
+
+const game = {
 
     score: 0,
-
     trust: 100,
-
     progress: 0,
-
     time: "09:00"
 
 };
 
 // --------------------------
-// HUD 업데이트
+// HUD
 // --------------------------
 
-function updateHUD() {
+function updateHUD(){
 
     document.getElementById("gameTime").textContent = game.time;
 
@@ -35,20 +36,19 @@ function updateHUD() {
 
     document.getElementById("trust").textContent = game.trust;
 
-   document.getElementById("progress").textContent = game.progress;
+    document.getElementById("progress").textContent = game.progress;
+
 }
 
 // --------------------------
 // 성별 선택
 // --------------------------
 
-const genderButtons = document.querySelectorAll(".genderBtn");
+document.querySelectorAll(".genderBtn").forEach(button=>{
 
-genderButtons.forEach(button => {
+    button.addEventListener("click",()=>{
 
-    button.addEventListener("click", () => {
-
-        genderButtons.forEach(btn => {
+        document.querySelectorAll(".genderBtn").forEach(btn=>{
 
             btn.classList.remove("active");
 
@@ -66,14 +66,17 @@ genderButtons.forEach(button => {
 // 출근 준비 완료
 // --------------------------
 
-document.getElementById("idCardButton").addEventListener("click", () => {
+document
+.getElementById("idCardButton")
+.addEventListener("click",()=>{
 
-    playerName = document
-        .getElementById("playerName")
-        .value
-        .trim();
+    playerName =
+    document
+    .getElementById("playerName")
+    .value
+    .trim();
 
-    if (playerName === "") {
+    if(playerName===""){
 
         alert("이름을 입력해주세요.");
 
@@ -81,7 +84,7 @@ document.getElementById("idCardButton").addEventListener("click", () => {
 
     }
 
-    if (gender === "") {
+    if(gender===""){
 
         alert("성별을 선택해주세요.");
 
@@ -89,17 +92,17 @@ document.getElementById("idCardButton").addEventListener("click", () => {
 
     }
 
-    localStorage.setItem("playerName", playerName);
+    localStorage.setItem("playerName",playerName);
 
-    localStorage.setItem("gender", gender);
-
-    document
-        .getElementById("cardName")
-        .textContent = playerName;
+    localStorage.setItem("gender",gender);
 
     document
-        .getElementById("idCardModal")
-        .classList.remove("hidden");
+    .getElementById("cardName")
+    .textContent = playerName;
+
+    document
+    .getElementById("idCardModal")
+    .classList.remove("hidden");
 
 });
 
@@ -108,30 +111,30 @@ document.getElementById("idCardButton").addEventListener("click", () => {
 // --------------------------
 
 document
-    .getElementById("closeCardButton")
-    .addEventListener("click", () => {
+.getElementById("closeCardButton")
+.addEventListener("click",()=>{
 
-        document
-            .getElementById("idCardModal")
-            .classList.add("hidden");
+    document
+    .getElementById("idCardModal")
+    .classList.add("hidden");
 
-        startGame();
+    startGame();
 
-    });
+});
 
 // --------------------------
 // 게임 시작
 // --------------------------
 
-function startGame() {
+function startGame(){
 
     document
-        .getElementById("startScreen")
-        .style.display = "none";
+    .getElementById("startScreen")
+    .style.display="none";
 
     document
-        .getElementById("hud")
-        .classList.remove("hidden");
+    .getElementById("hud")
+    .classList.remove("hidden");
 
     updateHUD();
 
@@ -143,79 +146,83 @@ function startGame() {
 // 카운트다운
 // --------------------------
 
-function showCountdown() {
+function showCountdown(){
 
-    document.body.insertAdjacentHTML("beforeend", `
+    document.body.insertAdjacentHTML(
 
+        "beforeend",
+
+`
 <div id="countdownScreen">
 
-    <div class="countBox">
+<div class="countBox">
 
-        <div class="levelText">
+<div class="levelText">
 
-            🎮 LEVEL 1
-
-        </div>
-
-        <h1>
-
-            칼퇴 대작전
-
-        </h1>
-
-        <p>
-
-            오늘은 입사 첫날입니다.
-
-        </p>
-
-        <div id="countNumber">
-
-            3
-
-        </div>
-
-    </div>
+🎮 LEVEL 1
 
 </div>
 
-`);
+<h1>칼퇴 대작전</h1>
 
-    let count = 3;
+<p>
 
-    const timer = setInterval(() => {
+오늘은 입사 첫날입니다.
+
+</p>
+
+<div id="countNumber">
+
+3
+
+</div>
+
+</div>
+
+</div>
+`
+
+);
+
+    let count=3;
+
+    const timer=setInterval(()=>{
 
         count--;
 
-        if (count > 0) {
+        if(count>0){
 
             document
-                .getElementById("countNumber")
-                .textContent = count;
+            .getElementById("countNumber")
+            .textContent=count;
 
         }
 
-        else if (count === 0) {
+        else if(count===0){
 
             document
-                .getElementById("countNumber")
-                .textContent = "START";
+            .getElementById("countNumber")
+            .textContent="START";
 
         }
 
-        else {
+        else{
 
             clearInterval(timer);
 
             document
-                .getElementById("countdownScreen")
-                .remove();
+            .getElementById("countdownScreen")
+            .remove();
 
             showMission1();
 
         }
 
-    }, 1000);
+    },1000);
+
+}
+
+// ====== Part2에서 계속 ======
 // ==========================
 // Part 2
 // Mission 1
@@ -223,7 +230,7 @@ function showCountdown() {
 
 function showMission1() {
 
-    document.body.insertAdjacentHTML("beforeend", `
+    document.getElementById("gameContainer").innerHTML = `
 
 <div id="missionContainer">
 
@@ -235,11 +242,7 @@ function showMission1() {
 
         </div>
 
-        <h2>
-
-            출근부터 위기!
-
-        </h2>
+        <h2>출근부터 위기!</h2>
 
         <p>
 
@@ -269,93 +272,93 @@ function showMission1() {
 
 </div>
 
-`);
+`;
 
 }
 
 // ==========================
-// 선택
+// 결과 팝업
 // ==========================
+
 function showResult(icon,title,text){
 
-    document.getElementById("resultIcon").textContent=icon;
+    document.getElementById("resultIcon").textContent = icon;
 
-    document.getElementById("resultTitle").textContent=title;
+    document.getElementById("resultTitle").textContent = title;
 
-    document.getElementById("resultText").innerHTML=text;
+    document.getElementById("resultText").innerHTML = text;
 
     document.getElementById("resultModal").classList.remove("hidden");
 
 }
+
+// ==========================
+// 선택 처리
+// ==========================
+
 function selectAnswer(answer){
 
-    document.getElementById("missionContainer").remove();
+    document.getElementById("gameContainer").innerHTML = "";
 
     if(answer===1){
 
         game.score += 20;
-        game.progress += 10;
 
-        game.time = "09:20";
-
-        updateHUD();
-
-       showResult(
-
-"✅",
-
-"좋은 선택!",
-
-"팀장에게 먼저 연락하여<br>상황을 공유했습니다.<br><br>⭐ 업무점수 +20"
-
-);
-    }
-
-    else if(answer===2){
-
-        game.score += 10;
         game.progress += 10;
 
         game.time="09:20";
 
         updateHUD();
 
-    showResult(
+        showResult(
+            "✅",
+            "좋은 선택!",
+            "팀장에게 먼저 연락하여 상황을 공유했습니다.<br><br>⭐ 업무점수 +20"
+        );
 
-"🙂",
+    }
 
-"무난한 선택",
+    else if(answer===2){
 
-"기다리는 것도 가능하지만<br>먼저 연락하는 것이 더 좋았습니다.<br><br>⭐ 업무점수 +10"
+        game.score += 10;
 
-);
+        game.progress += 10;
+
+        game.time="09:20";
+
+        updateHUD();
+
+        showResult(
+            "🙂",
+            "무난한 선택",
+            "기다리는 것도 가능하지만 먼저 연락하는 것이 더 좋았습니다.<br><br>⭐ 업무점수 +10"
+        );
+
     }
 
     else if(answer===3){
 
         game.score += 15;
+
         game.progress += 10;
 
         game.time="09:10";
 
         updateHUD();
 
-showResult(
+        showResult(
+            "🚖",
+            "빠른 판단",
+            "시간은 지켰지만 비용도 함께 고려해야 합니다.<br><br>⭐ 업무점수 +15"
+        );
 
-"🚖",
-
-"빠른 판단",
-
-"시간은 지켰지만<br>비용도 함께 고려해야 합니다.<br><br>⭐ 업무점수 +15"
-
-);
     }
 
     else{
 
         game.score -= 10;
 
-        game.trust -= 10;
+        game.trust = Math.max(0, game.trust - 10);
 
         game.progress += 10;
 
@@ -363,26 +366,21 @@ showResult(
 
         updateHUD();
 
-     showResult(
-
-"❌",
-
-"아쉬운 선택",
-
-"연락 없이 지각하여<br>신뢰도가 감소했습니다.<br><br>❤️ 신뢰도 -10"
-
-);
+        showResult(
+            "❌",
+            "아쉬운 선택",
+            "연락 없이 지각하여 신뢰도가 감소했습니다.<br><br>❤️ 신뢰도 -10"
+        );
 
     }
 
-    setTimeout(()=>{
-
-        alert("Mission 2가 곧 시작됩니다.");
-
-    },300);
-
 }
-    document
+
+// ==========================
+// 다음 미션
+// ==========================
+
+document
 .getElementById("nextMissionButton")
 .addEventListener("click",()=>{
 
@@ -393,4 +391,3 @@ showResult(
     alert("Mission 2가 이어질 예정입니다.");
 
 });
-}
