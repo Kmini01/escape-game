@@ -2001,55 +2001,34 @@ function showEnding(){
     let message = "";
     let resultColor = "";
 
-    if(game.score >= 130 && game.trust >= 90){
+if(game.score >= 90 && game.trust >= 90){
 
-        icon = "🏆";
-        title = "칼퇴 성공!";
-        resultColor = "#16a34a";
+    icon = "🏆";
+    title = "칼퇴 성공!";
+    resultColor = "#16a34a";
 
-        message =
-        "오늘 하루 업무를 완벽하게 수행했습니다.<br>" +
-        "업무능력과 협업, 소통까지 모두 인정받았습니다.<br><br>" +
-        "축하합니다! 정시에 퇴근합니다. 🎉";
+}
+else if(game.score >= 75 && game.trust >= 80){
 
-    }
+    icon = "😊";
+    title = "정상 퇴근";
+    resultColor = "#2563eb";
 
-    else if(game.score >= 100 && game.trust >= 80){
+}
+else if(game.score >= 60 && game.trust >= 60){
 
-        icon = "😊";
-        title = "정상 퇴근";
-        resultColor = "#2563eb";
+    icon = "⏰";
+    title = "야근 1시간";
+    resultColor = "#f59e0b";
 
-        message =
-        "오늘의 업무를 무사히 마무리했습니다.<br>" +
-        "조금 더 경험을 쌓으면 최고의 신입사원이 될 수 있습니다.";
+}
+else{
 
-    }
+    icon = "🌙";
+    title = "야근 확정";
+    resultColor = "#dc2626";
 
-    else if(game.score >= 70 && game.trust >= 60){
-
-        icon = "⏰";
-        title = "야근 1시간";
-        resultColor = "#f59e0b";
-
-        message =
-        "업무는 거의 마무리되었지만<br>" +
-        "남은 업무를 정리하기 위해<br>" +
-        "1시간 더 근무합니다.";
-
-    }
-
-    else{
-
-        icon = "🌙";
-        title = "야근 확정";
-        resultColor = "#dc2626";
-
-        message =
-        "업무 처리와 협업에서 아쉬운 부분이 있었습니다.<br>" +
-        "다음에는 더 좋은 결과에 도전해보세요!";
-
-    }
+}
 // ==========================
 // BEST 역량 / 성장 포인트
 // ==========================
@@ -2198,3 +2177,52 @@ margin-bottom:15px;
 </div>
 
 `;
+document.body.insertAdjacentHTML("beforeend",`
+
+<div id="missionContainer">
+
+    <div class="missionCard">
+
+        <div class="missionLabel">
+
+            🎊 GAME CLEAR
+
+        </div>
+
+        <div style="font-size:80px;margin:20px 0;">
+
+            ${icon}
+
+        </div>
+
+        <h2 style="color:${resultColor};">
+
+            ${title}
+
+        </h2>
+
+        <p style="line-height:1.8;">
+
+            ⭐ <b>최종 업무점수</b> : ${game.score}점<br>
+
+            ❤️ <b>최종 신뢰도</b> : ${game.trust}%
+
+        </p>
+
+        ${report}
+
+        ${feedback}
+
+        <button
+            class="choiceBtn"
+            onclick="location.reload()">
+
+            🔄 다시 플레이
+
+        </button>
+
+    </div>
+
+</div>
+
+`);
