@@ -906,6 +906,193 @@ function selectMission3(answer){
 
 }
 // ==========================
+// Mission 4
+// 회의 일정 변경
+// ==========================
+
+function showMission4(){
+
+    document.body.insertAdjacentHTML("beforeend",`
+
+<div id="missionContainer">
+
+    <div class="missionCard missionSchedule">
+
+        <div class="missionLabel">
+            📅 MISSION 4
+        </div>
+
+        <h2>회의 일정이 변경되었습니다!</h2>
+
+        <p>
+
+            📢 팀장님 공지<br><br>
+
+            오후 회의가 <b>2시</b>로 변경되었습니다.<br>
+
+            오전 시간이 생겼습니다.<br><br>
+
+            <b>업무 일정을 다시 배치하세요.</b>
+
+        </p>
+
+        <div class="scheduleArea">
+
+            <div class="timeRow">
+
+                <div class="time">09:00</div>
+
+                <div class="dropZone"
+                    data-answer="email"
+                    ondragover="allowDrop(event)"
+                    ondrop="drop(event)">
+                </div>
+
+            </div>
+
+            <div class="timeRow">
+
+                <div class="time">09:20</div>
+
+                <div class="dropZone"
+                    data-answer="call"
+                    ondragover="allowDrop(event)"
+                    ondrop="drop(event)">
+                </div>
+
+            </div>
+
+            <div class="timeRow">
+
+                <div class="time">10:00</div>
+
+                <div class="dropZone"
+                    data-answer="report"
+                    ondragover="allowDrop(event)"
+                    ondrop="drop(event)">
+                </div>
+
+            </div>
+
+            <div class="timeRow">
+
+                <div class="time">11:10</div>
+
+                <div class="dropZone"
+                    data-answer="edit"
+                    ondragover="allowDrop(event)"
+                    ondrop="drop(event)">
+                </div>
+
+            </div>
+
+            <div class="timeRow">
+
+                <div class="time">13:20</div>
+
+                <div class="dropZone"
+                    data-answer="print"
+                    ondragover="allowDrop(event)"
+                    ondrop="drop(event)">
+                </div>
+
+            </div>
+
+            <div class="timeRow fixed">
+
+                <div class="time">
+
+                    14:00
+
+                </div>
+
+                <div class="fixedTask">
+
+                    👥 ESG 회의
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <h3>업무 카드</h3>
+
+        <div id="taskArea">
+
+            <div class="taskCard"
+                id="email"
+                draggable="true"
+                ondragstart="drag(event)">
+
+                📧 이메일 확인<br>
+
+                <small>15분</small>
+
+            </div>
+
+            <div class="taskCard"
+                id="call"
+                draggable="true"
+                ondragstart="drag(event)">
+
+                📞 거래처 전화<br>
+
+                <small>20분</small>
+
+            </div>
+
+            <div class="taskCard"
+                id="report"
+                draggable="true"
+                ondragstart="drag(event)">
+
+                📊 업무보고 작성<br>
+
+                <small>60분</small>
+
+            </div>
+
+            <div class="taskCard"
+                id="edit"
+                draggable="true"
+                ondragstart="drag(event)">
+
+                📝 회의자료 보완<br>
+
+                <small>40분</small>
+
+            </div>
+
+            <div class="taskCard"
+                id="print"
+                draggable="true"
+                ondragstart="drag(event)">
+
+                🖨️ 회의자료 출력<br>
+
+                <small>20분</small>
+
+            </div>
+
+        </div>
+
+        <button
+            id="checkScheduleButton"
+            onclick="checkMission4()">
+
+            ✅ 일정 확인
+
+        </button>
+
+    </div>
+
+</div>
+
+`);
+
+}
+// ==========================
 // Mission 4 정답 확인
 // ==========================
 
