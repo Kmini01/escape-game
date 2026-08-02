@@ -1,1 +1,261 @@
 
+/* ===========================
+   MISSION : 칼퇴 대작전
+   Version 0.1
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Pretendard',sans-serif;
+
+    background:#0f172a;
+
+    color:white;
+
+    height:100vh;
+
+    overflow:hidden;
+
+}
+
+/* 배경 */
+
+#startScreen{
+
+    width:100%;
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(135deg,#0f172a,#1e3a8a);
+
+    position:relative;
+
+}
+
+/* 어두운 오버레이 */
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,.25);
+
+}
+
+/* 카드 */
+
+.startCard{
+
+    width:92%;
+
+    max-width:420px;
+
+    background:white;
+
+    color:#222;
+
+    border-radius:28px;
+
+    padding:40px 30px;
+
+    position:relative;
+
+    z-index:2;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+    animation:fadeUp .7s ease;
+
+}
+
+.missionLabel{
+
+    display:inline-block;
+
+    background:#1d4ed8;
+
+    color:white;
+
+    padding:8px 16px;
+
+    border-radius:100px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+}
+
+.logo h1{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    color:#0f172a;
+
+    margin-bottom:14px;
+
+}
+
+.logo p{
+
+    color:#555;
+
+    line-height:1.6;
+
+    margin-bottom:35px;
+
+}
+
+/* 입력 */
+
+.playerForm label{
+
+    display:block;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+.playerForm input{
+
+    width:100%;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    border:2px solid #ddd;
+
+    font-size:16px;
+
+    margin-bottom:22px;
+
+}
+
+.playerForm input:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+}
+
+/* 성별 */
+
+.genderGroup{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-bottom:28px;
+
+}
+
+.genderBtn{
+
+    flex:1;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#eef2ff;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.25s;
+
+}
+
+.genderBtn:hover{
+
+    background:#dbeafe;
+
+}
+
+.genderBtn.active{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+/* 시작버튼 */
+
+#startButton{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#facc15;
+
+    color:#222;
+
+    font-size:20px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+#startButton:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(250,204,21,.45);
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
