@@ -562,4 +562,103 @@ body{
     display:none !important;
 
 }
+/* ===========================
+   Mission 1
+=========================== */
+
+#missionContainer{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(135deg,#0f172a,#1e3a8a);
+
+    padding:20px;
+
+    z-index:9998;
+
+}
+
+.missionCard{
+
+    width:100%;
+
+    max-width:420px;
+
+    background:white;
+
+    color:#222;
+
+    border-radius:28px;
+
+    padding:30px;
+
+    text-align:center;
+
+    animation:fadeUp .5s ease;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+}
+
+.missionCard h2{
+
+    margin:15px 0;
+
+    font-size:30px;
+
+    color:#111827;
+
+}
+
+.missionCard p{
+
+    line-height:1.7;
+
+    color:#555;
+
+    margin-bottom:25px;
+
+}
+
+.choiceBtn{
+
+    width:100%;
+
+    margin-bottom:12px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#EEF2FF;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.choiceBtn:hover{
+
+    background:#2563EB;
+
+    color:white;
+
+    transform:translateY(-2px);
+
+}
 }
