@@ -334,15 +334,39 @@ document
     .getElementById("resultModal")
     .classList.add("hidden");
 
-    if(game.progress===10){
+    switch(game.progress){
 
-        showMission2();
+        case 10:
+            showMission2();
+            break;
 
-    }
+        case 20:
+            showMission3();
+            break;
 
-    else if(game.progress===20){
+        case 30:
+            showMission4();
+            break;
 
-        showMission3();
+        case 40:
+            showMission5();
+            break;
+
+        case 50:
+            showMission6();
+            break;
+
+        case 60:
+            showMission7();
+            break;
+
+        case 70:
+            showMission8();
+            break;
+
+        case 80:
+            showEnding();
+            break;
 
     }
 
@@ -646,7 +670,7 @@ function checkMission2(){
 }
 // ==========================
 // Mission 3
-// 이메일 확인
+// 프린터 고장
 // ==========================
 
 function showMission3(){
@@ -658,42 +682,535 @@ function showMission3(){
     <div class="missionCard">
 
         <div class="missionLabel">
-            📧 MISSION 3
+
+            🖨️ MISSION 3
+
         </div>
 
         <h2>
 
-            이메일 확인
+            프린터가 고장났다!
 
         </h2>
 
         <p>
 
-            출근 후 받은 메일 중<br>
+            회의자료를 출력하려는데<br>
+            프린터 오류가 발생했습니다.<br><br>
 
-            가장 먼저 확인해야 하는 메일을 선택하세요.
+            <b>회의까지 20분 남았습니다.</b><br><br>
+
+            어떻게 하시겠습니까?
 
         </p>
 
-       <button class="choiceBtn" onclick="selectMission3(1)">
-📢 전사 공지
-</button>
+        <button class="choiceBtn" onclick="selectMission3(1)">
 
-<button class="choiceBtn" onclick="selectMission3(2)">
-👥 팀장 업무지시
-</button>
+            👨‍💼 팀장에게 먼저 보고하고 다른 프린터를 확인한다.
 
-<button class="choiceBtn" onclick="selectMission3(3)">
-☕ 사내 동호회 안내
-</button>
+        </button>
 
-<button class="choiceBtn" onclick="selectMission3(4)">
-🎁 이벤트 광고
-</button>
+        <button class="choiceBtn" onclick="selectMission3(2)">
+
+            🔧 혼자 계속 프린터를 고쳐본다.
+
+        </button>
+
+        <button class="choiceBtn" onclick="selectMission3(3)">
+
+            🚶 아무 말 없이 다른 층 프린터를 찾으러 간다.
+
+        </button>
+
+        <button class="choiceBtn" onclick="selectMission3(4)">
+
+            😅 회의시간이 될 때까지 기다렸다가 이야기한다.
+
+        </button>
+
     </div>
 
 </div>
 
 `);
+
+}
+
+// ==========================
+// Mission 3 선택
+// ==========================
+
+function selectMission3(answer){
+
+    document.getElementById("missionContainer").remove();
+
+    if(answer===1){
+
+        game.score += 20;
+        game.trust += 5;
+        game.progress += 10;
+        game.time = "09:55";
+
+        updateHUD();
+
+        showResult(
+            "🖨️",
+            "좋은 판단!",
+            "문제를 바로 공유하고<br>대안을 찾아 회의 준비를 이어갔습니다.<br><br>⭐ 업무점수 +20<br>❤️ 신뢰도 +5"
+        );
+
+    }
+
+    else if(answer===2){
+
+        game.score += 10;
+        game.progress += 10;
+        game.time = "10:00";
+
+        updateHUD();
+
+        showResult(
+            "🔧",
+            "노력은 좋았습니다.",
+            "직접 해결하려는 자세는 좋았지만<br>시간이 많이 지체되었습니다.<br><br>⭐ 업무점수 +10"
+        );
+
+    }
+
+    else if(answer===3){
+
+        game.score += 5;
+        game.progress += 10;
+        game.time = "09:58";
+
+        updateHUD();
+
+        showResult(
+            "🏃",
+            "조금 아쉬운 선택",
+            "문제는 해결할 수 있지만<br>팀장이 현재 상황을 알지 못했습니다.<br><br>⭐ 업무점수 +5"
+        );
+
+    }
+
+    else{
+
+        game.score -= 10;
+        game.trust -= 10;
+        game.progress += 10;
+        game.time = "10:05";
+
+        updateHUD();
+
+        showResult(
+            "❌",
+            "아쉬운 선택",
+            "보고가 늦어져 회의 준비에 차질이 생겼습니다.<br><br>⭐ 업무점수 -10<br>❤️ 신뢰도 -10"
+        );
+
+    }
+
+}
+// ==========================
+// Mission 4
+// 회의 일정 변경
+// ==========================
+
+function showMission4(){
+
+    document.body.insertAdjacentHTML("beforeend",`
+
+<div id="missionContainer">
+
+    <div class="missionCard missionSchedule">
+
+        <div class="missionLabel">
+            📅 MISSION 4
+        </div>
+
+        <h2>
+            회의 일정이 변경되었습니다!
+        </h2>
+
+        <p>
+
+            📢 팀장님 공지<br><br>
+
+            회의가 <b>오후 2시</b>로 변경되었습니다.<br>
+
+            오전 시간이 생겼습니다.<br><br>
+
+            <b>회의자료를 보완하는 업무가 추가되었습니다.</b><br>
+
+            일정을 다시 배치하세요.
+
+        </p>
+
+        <div class="scheduleArea">
+
+            <div class="timeRow">
+
+                <div class="time">09:00</div>
+
+                <div class="dropZone"
+                     data-answer="email"
+                     ondragover="allowDrop(event)"
+                     ondrop="drop(event)">
+                </div>
+
+            </div>
+
+            <div class="timeRow">
+
+                <div class="time">09:20</div>
+
+                <div class="dropZone"
+                     data-answer="call"
+                     ondragover="allowDrop(event)"
+                     ondrop="drop(event)">
+                </div>
+
+            </div>
+
+            <div class="timeRow">
+
+                <div class="time">10:00</div>
+
+                <div class="dropZone"
+                     data-answer="report"
+                     ondragover="allowDrop(event)"
+                     ondrop="drop(event)">
+                </div>
+
+            </div>
+
+            <div class="timeRow">
+
+                <div class="time">11:10</div>
+
+                <div class="dropZone"
+                     data-answer="edit"
+                     ondragover="allowDrop(event)"
+                     ondrop="drop(event)">
+                </div>
+
+            </div>
+
+            <div class="timeRow">
+
+                <div class="time">13:20</div>
+
+                <div class="dropZone"
+                     data-answer="print"
+                     ondragover="allowDrop(event)"
+                     ondrop="drop(event)">
+                </div>
+
+            </div>
+
+            <div class="timeRow fixed">
+
+                <div class="time">14:00</div>
+
+                <div class="fixedTask">
+
+                    👥 팀회의 (30분)
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <h3>업무 카드</h3>
+
+        <div id="taskArea">
+
+            <div class="taskCard"
+                 id="email"
+                 draggable="true"
+                 ondragstart="drag(event)">
+
+                📧 이메일 확인
+                <br><small>15분</small>
+
+            </div>
+
+            <div class="taskCard"
+                 id="call"
+                 draggable="true"
+                 ondragstart="drag(event)">
+
+                📞 거래처 전화
+                <br><small>20분</small>
+
+            </div>
+
+            <div class="taskCard"
+                 id="report"
+                 draggable="true"
+                 ondragstart="drag(event)">
+
+                📊 업무보고 작성
+                <br><small>60분</small>
+
+            </div>
+
+            <div class="taskCard"
+                 id="edit"
+                 draggable="true"
+                 ondragstart="drag(event)">
+
+                📝 회의자료 보완
+                <br><small>40분</small>
+
+            </div>
+
+            <div class="taskCard"
+                 id="print"
+                 draggable="true"
+                 ondragstart="drag(event)">
+
+                🖨️ 회의자료 출력
+                <br><small>20분</small>
+
+            </div>
+
+        </div>
+
+        <button
+            id="checkScheduleButton"
+            onclick="checkMission4()">
+
+            ✅ 일정 확인
+
+        </button>
+
+    </div>
+
+</div>
+
+`);
+
+}
+// ==========================
+// Mission4 채점
+// ==========================
+
+function checkMission4(){
+
+    let correct = true;
+
+    document.querySelectorAll(".dropZone").forEach(zone=>{
+
+        const answer = zone.dataset.answer;
+        const task = zone.firstElementChild;
+
+        if(!task || task.id!==answer){
+
+            correct = false;
+
+        }
+
+    });
+
+    document.getElementById("missionContainer").remove();
+
+    if(correct){
+
+        game.score += 25;
+        game.trust += 5;
+        game.progress += 10;
+        game.time = "14:30";
+
+        updateHUD();
+
+        showResult(
+            "👏",
+            "일정 재조정 성공!",
+            "회의 변경에 맞춰 업무를 효율적으로 재배치했습니다.<br><br>⭐ 업무점수 +25<br>❤️ 신뢰도 +5"
+        );
+
+    }
+
+    else{
+
+        game.score -= 10;
+        game.progress += 10;
+        game.time = "14:30";
+
+        updateHUD();
+
+        showResult(
+            "❌",
+            "일정 재조정 실패",
+            "회의 변경에 맞는 업무 순서를 다시 생각해보세요.<br><br>⭐ 업무점수 -10"
+        );
+
+    }
+
+}
+// ==========================
+// Mission 5
+// 업무보고서 작성
+// ==========================
+
+function showMission5(){
+
+    document.body.insertAdjacentHTML("beforeend",`
+
+<div id="missionContainer">
+
+    <div class="missionCard">
+
+        <div class="missionLabel">
+
+            📊 MISSION 5
+
+        </div>
+
+        <h2>
+
+            업무보고서 작성
+
+        </h2>
+
+        <p>
+
+            📢 팀장님<br><br>
+
+            오후 ESG 회의를 위해<br>
+
+            <b>「2026년 상반기 ESG 활동 실적 보고서」</b>를 작성해주세요.<br><br>
+
+            보고서 작성에 가장 필요한 자료 <b>2개</b>를 선택하세요.
+
+        </p>
+
+        <div class="fileList">
+
+            <label class="fileItem">
+
+                <input type="checkbox" value="2026">
+
+                📊 2026 상반기 ESG 실적.xlsx
+
+            </label>
+
+            <label class="fileItem">
+
+                <input type="checkbox" value="report">
+
+                📄 2025 상반기 ESG 보고서.docx
+
+            </label>
+
+            <label class="fileItem">
+
+                <input type="checkbox" value="2025">
+
+                📊 2025 상반기 ESG 실적.xlsx
+
+            </label>
+
+            <label class="fileItem">
+
+                <input type="checkbox" value="memo">
+
+                📝 ESG 회의 메모.txt
+
+            </label>
+
+            <label class="fileItem">
+
+                <input type="checkbox" value="logo">
+
+                🖼 회사 로고.png
+
+            </label>
+
+        </div>
+
+        <button
+            id="checkMission5Button"
+            onclick="checkMission5()">
+
+            ✅ 선택 완료
+
+        </button>
+
+    </div>
+
+</div>
+
+`);
+
+}
+// ==========================
+// Mission5 채점
+// ==========================
+
+function checkMission5(){
+
+    const checked =
+    [...document.querySelectorAll(".fileList input:checked")];
+
+    if(checked.length!==2){
+
+        alert("파일 2개를 선택해주세요.");
+
+        return;
+
+    }
+
+    const values = checked.map(item=>item.value);
+
+    document.getElementById("missionContainer").remove();
+
+    const correct =
+    values.includes("2026") &&
+    values.includes("report");
+
+    if(correct){
+
+        game.score += 20;
+        game.trust += 5;
+        game.progress += 10;
+        game.time = "15:10";
+
+        updateHUD();
+
+        showResult(
+
+            "📊",
+
+            "자료 선택 성공!",
+
+            "최신 실적 데이터와<br>작년 보고서를 함께 참고하여<br>효율적으로 업무보고서를 작성했습니다.<br><br>⭐ 업무점수 +20<br>❤️ 신뢰도 +5"
+
+        );
+
+    }
+
+    else{
+
+        game.score -= 10;
+        game.trust -= 5;
+        game.progress += 10;
+        game.time = "15:10";
+
+        updateHUD();
+
+        showResult(
+
+            "❌",
+
+            "자료 선택 실패",
+
+            "최신 데이터와 기존 양식을 함께 확인해야<br>정확한 업무보고서를 작성할 수 있습니다.<br><br>⭐ 업무점수 -10<br>❤️ 신뢰도 -5"
+
+        );
+
+    }
 
 }
