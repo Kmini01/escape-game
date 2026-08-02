@@ -1214,3 +1214,34 @@ function checkMission5(){
     }
 
 }
+// ==========================
+// Mission5 파일 선택
+// ==========================
+
+let selectedFiles = [];
+
+function selectFile(element, value){
+
+    if(element.classList.contains("selected")){
+
+        element.classList.remove("selected");
+
+        selectedFiles = selectedFiles.filter(v=>v!==value);
+
+        return;
+
+    }
+
+    if(selectedFiles.length>=2){
+
+        alert("파일은 2개만 선택할 수 있습니다.");
+
+        return;
+
+    }
+
+    element.classList.add("selected");
+
+    selectedFiles.push(value);
+
+}
