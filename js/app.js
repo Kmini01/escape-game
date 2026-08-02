@@ -5,15 +5,11 @@
 // ==========================
 
 // --------------------------
-// 플레이어 정보
+// 게임 데이터
 // --------------------------
 
 let gender = "";
 let playerName = "";
-
-// --------------------------
-// 게임 상태
-// --------------------------
 
 const game = {
 
@@ -25,17 +21,14 @@ const game = {
 };
 
 // --------------------------
-// HUD
+// HUD 업데이트
 // --------------------------
 
 function updateHUD(){
 
     document.getElementById("gameTime").textContent = game.time;
-
     document.getElementById("score").textContent = game.score;
-
     document.getElementById("trust").textContent = game.trust;
-
     document.getElementById("progress").textContent = game.progress;
 
 }
@@ -44,15 +37,13 @@ function updateHUD(){
 // 성별 선택
 // --------------------------
 
-document.querySelectorAll(".genderBtn").forEach(button=>{
+const genderButtons = document.querySelectorAll(".genderBtn");
+
+genderButtons.forEach(button=>{
 
     button.addEventListener("click",()=>{
 
-        document.querySelectorAll(".genderBtn").forEach(btn=>{
-
-            btn.classList.remove("active");
-
-        });
+        genderButtons.forEach(btn=>btn.classList.remove("active"));
 
         button.classList.add("active");
 
@@ -66,20 +57,13 @@ document.querySelectorAll(".genderBtn").forEach(button=>{
 // 출근 준비 완료
 // --------------------------
 
-document
-.getElementById("idCardButton")
-.addEventListener("click",()=>{
+document.getElementById("idCardButton").addEventListener("click",()=>{
 
-    playerName =
-    document
-    .getElementById("playerName")
-    .value
-    .trim();
+    playerName = document.getElementById("playerName").value.trim();
 
     if(playerName===""){
 
         alert("이름을 입력해주세요.");
-
         return;
 
     }
@@ -87,22 +71,13 @@ document
     if(gender===""){
 
         alert("성별을 선택해주세요.");
-
         return;
 
     }
 
-    localStorage.setItem("playerName",playerName);
+    document.getElementById("cardName").textContent = playerName;
 
-    localStorage.setItem("gender",gender);
-
-    document
-    .getElementById("cardName")
-    .textContent = playerName;
-
-    document
-    .getElementById("idCardModal")
-    .classList.remove("hidden");
+    document.getElementById("idCardModal").classList.remove("hidden");
 
 });
 
@@ -110,13 +85,9 @@ document
 // 출근하기
 // --------------------------
 
-document
-.getElementById("closeCardButton")
-.addEventListener("click",()=>{
+document.getElementById("closeCardButton").addEventListener("click",()=>{
 
-    document
-    .getElementById("idCardModal")
-    .classList.add("hidden");
+    document.getElementById("idCardModal").classList.add("hidden");
 
     startGame();
 
@@ -128,13 +99,9 @@ document
 
 function startGame(){
 
-    document
-    .getElementById("startScreen")
-    .style.display="none";
+    document.getElementById("startScreen").style.display="none";
 
-    document
-    .getElementById("hud")
-    .classList.remove("hidden");
+    document.getElementById("hud").classList.remove("hidden");
 
     updateHUD();
 
@@ -148,71 +115,47 @@ function startGame(){
 
 function showCountdown(){
 
-    document.body.insertAdjacentHTML(
+    document.body.insertAdjacentHTML("beforeend",`
 
-        "beforeend",
-
-`
 <div id="countdownScreen">
 
-<div class="countBox">
+    <div class="countBox">
 
-<div class="levelText">
+        <div class="levelText">
+            🎮 LEVEL 1
+        </div>
 
-🎮 LEVEL 1
+        <h1>칼퇴 대작전</h1>
 
-</div>
+        <p>오늘은 입사 첫날입니다.</p>
 
-<h1>칼퇴 대작전</h1>
+        <div id="countNumber">3</div>
 
-<p>
-
-오늘은 입사 첫날입니다.
-
-</p>
-
-<div id="countNumber">
-
-3
+    </div>
 
 </div>
 
-</div>
+`);
 
-</div>
-`
+    let count = 3;
 
-);
-
-    let count=3;
-
-    const timer=setInterval(()=>{
+    const timer = setInterval(()=>{
 
         count--;
 
         if(count>0){
 
-            document
-            .getElementById("countNumber")
-            .textContent=count;
+            document.getElementById("countNumber").textContent = count;
 
-        }
+        }else if(count===0){
 
-        else if(count===0){
+            document.getElementById("countNumber").textContent = "START";
 
-            document
-            .getElementById("countNumber")
-            .textContent="START";
-
-        }
-
-        else{
+        }else{
 
             clearInterval(timer);
 
-            document
-            .getElementById("countdownScreen")
-            .remove();
+            document.getElementById("countdownScreen").remove();
 
             showMission1();
 
@@ -221,25 +164,21 @@ function showCountdown(){
     },1000);
 
 }
-
-// ====== Part2에서 계속 ======
 // ==========================
 // Part 2
 // Mission 1
 // ==========================
 
-function showMission1() {
+function showMission1(){
 
-    document.getElementById("gameContainer").innerHTML = `
+    document.body.insertAdjacentHTML("beforeend",`
 
 <div id="missionContainer">
 
     <div class="missionCard">
 
         <div class="missionLabel">
-
             🌧️ MISSION 1
-
         </div>
 
         <h2>출근부터 위기!</h2>
@@ -272,7 +211,7 @@ function showMission1() {
 
 </div>
 
-`;
+`);
 
 }
 
@@ -293,91 +232,76 @@ function showResult(icon,title,text){
 }
 
 // ==========================
-// 선택 처리
+// 선택
 // ==========================
 
 function selectAnswer(answer){
 
-    document.getElementById("gameContainer").innerHTML = "";
+    document.getElementById("missionContainer").remove();
 
     if(answer===1){
 
-        game.score += 20;
-
-        game.progress += 10;
-
+        game.score+=20;
+        game.progress+=10;
         game.time="09:20";
-
-        updateHUD();
 
         showResult(
             "✅",
             "좋은 선택!",
-            "팀장에게 먼저 연락하여 상황을 공유했습니다.<br><br>⭐ 업무점수 +20"
+            "팀장에게 먼저 연락하여<br>상황을 공유했습니다.<br><br>⭐ 업무점수 +20"
         );
 
     }
 
     else if(answer===2){
 
-        game.score += 10;
-
-        game.progress += 10;
-
+        game.score+=10;
+        game.progress+=10;
         game.time="09:20";
-
-        updateHUD();
 
         showResult(
             "🙂",
             "무난한 선택",
-            "기다리는 것도 가능하지만 먼저 연락하는 것이 더 좋았습니다.<br><br>⭐ 업무점수 +10"
+            "기다리는 것도 가능하지만<br>먼저 연락하는 것이 더 좋았습니다.<br><br>⭐ 업무점수 +10"
         );
 
     }
 
     else if(answer===3){
 
-        game.score += 15;
-
-        game.progress += 10;
-
+        game.score+=15;
+        game.progress+=10;
         game.time="09:10";
-
-        updateHUD();
 
         showResult(
             "🚖",
             "빠른 판단",
-            "시간은 지켰지만 비용도 함께 고려해야 합니다.<br><br>⭐ 업무점수 +15"
+            "시간은 지켰지만<br>비용도 함께 고려해야 합니다.<br><br>⭐ 업무점수 +15"
         );
 
     }
 
     else{
 
-        game.score -= 10;
-
-        game.trust = Math.max(0, game.trust - 10);
-
-        game.progress += 10;
-
+        game.score-=10;
+        game.trust-=10;
+        game.progress+=10;
         game.time="09:30";
-
-        updateHUD();
 
         showResult(
             "❌",
             "아쉬운 선택",
-            "연락 없이 지각하여 신뢰도가 감소했습니다.<br><br>❤️ 신뢰도 -10"
+            "연락 없이 지각하여<br>신뢰도가 감소했습니다.<br><br>❤️ 신뢰도 -10"
         );
 
     }
 
-}
+    updateHUD();
 
+}
 // ==========================
-// 다음 미션
+// Part 3
+// 다음 버튼
 // ==========================
 
 document
@@ -391,3 +315,9 @@ document
     alert("Mission 2가 이어질 예정입니다.");
 
 });
+
+// ==========================
+// 초기 HUD
+// ==========================
+
+updateHUD();
