@@ -1198,6 +1198,20 @@ transform:scale(.96);
    성과 리포트
 =========================== */
 
+.reportTitle{
+
+    font-size:24px;
+
+    font-weight:800;
+
+    color:#2563EB;
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+}
+
 .reportRow{
 
     display:flex;
@@ -1218,25 +1232,11 @@ transform:scale(.96);
 
 }
 
-.reportTitle{
-
-    font-size:24px;
-
-    font-weight:800;
-
-    color:#2563eb;
-
-    text-align:center;
-
-    margin-bottom:20px;
-
-}
-
 .starScore{
 
-    font-size:20px;
+    color:#FBBF24;
 
-    color:#fbbf24;
+    font-size:20px;
 
     letter-spacing:2px;
 
@@ -1254,11 +1254,11 @@ transform:scale(.96);
 
     padding:20px;
 
+    background:#EEF6FF;
+
+    border:2px solid #BFDBFE;
+
     border-radius:18px;
-
-    background:#eef6ff;
-
-    border:2px solid #bfdbfe;
 
     text-align:left;
 
@@ -1268,7 +1268,7 @@ transform:scale(.96);
 
     text-align:center;
 
-    color:#2563eb;
+    color:#2563EB;
 
     margin-bottom:18px;
 
@@ -1278,15 +1278,9 @@ transform:scale(.96);
 
 .feedbackItem{
 
-    margin:15px 0;
+    margin:14px 0;
 
     line-height:1.8;
-
-}
-
-.feedbackItem strong{
-
-    color:#111827;
 
 }
 
@@ -1296,7 +1290,7 @@ transform:scale(.96);
 
 @keyframes pop{
 
-    0%{
+    from{
 
         transform:scale(.85);
 
@@ -1304,7 +1298,7 @@ transform:scale(.96);
 
     }
 
-    100%{
+    to{
 
         transform:scale(1);
 
