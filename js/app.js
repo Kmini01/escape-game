@@ -1805,58 +1805,60 @@ function showEnding(){
     let resultColor = "";
 
     // --------------------------
-    // 결과 판정 (100점 만점)
-    // --------------------------
+// 결과 판정 (100점 만점)
+// --------------------------
 
-    if(game.score >= 90 && game.trust >= 90){
+if(game.score >= 85 && game.trust >= 90){
 
-        icon = "🏆";
-        title = "칼퇴 성공!";
-        resultColor = "#16a34a";
+    icon = "🏆";
+    title = "칼퇴 성공!";
+    resultColor = "#16a34a";
 
-        message =
-        "오늘 하루 업무를 완벽하게 수행했습니다.<br>" +
-        "업무능력과 협업, 소통까지 모두 인정받았습니다.<br><br>" +
-        "축하합니다! 정시에 퇴근합니다. 🎉";
+    message =
+    "오늘 하루 업무를 완벽하게 수행했습니다.<br>" +
+    "업무능력과 협업, 소통까지 모두 인정받았습니다.<br><br>" +
+    "축하합니다! 정시에 퇴근합니다. 🎉";
 
-    }
+}
 
-    else if(game.score >= 75 && game.trust >= 80){
+else if(game.score >= 70 && game.trust >= 75){
 
-        icon = "😊";
-        title = "정상 퇴근";
-        resultColor = "#2563eb";
+    icon = "😊";
+    title = "정상 퇴근";
+    resultColor = "#2563eb";
 
-        message =
-        "오늘의 업무를 무사히 마무리했습니다.<br>" +
-        "신입사원으로서 좋은 하루였습니다.";
+    message =
+    "오늘의 업무를 무사히 마무리했습니다.<br>" +
+    "신입사원으로서 좋은 업무 수행을 보여주었습니다.<br><br>" +
+    "오늘도 수고 많으셨습니다!";
 
-    }
+}
 
-    else if(game.score >= 60 && game.trust >= 60){
+else if(game.score >= 50 && game.trust >= 60){
 
-        icon = "⏰";
-        title = "야근 1시간";
-        resultColor = "#f59e0b";
+    icon = "⏰";
+    title = "야근 1시간";
+    resultColor = "#f59e0b";
 
-        message =
-        "업무는 거의 마무리되었지만<br>" +
-        "조금 더 정리가 필요했습니다.";
+    message =
+    "업무는 대부분 완료했지만<br>" +
+    "일부 업무를 마무리하기 위해<br>" +
+    "1시간 정도 추가 근무가 필요합니다.";
 
-    }
+}
 
-    else{
+else{
 
-        icon = "🌙";
-        title = "야근 확정";
-        resultColor = "#dc2626";
+    icon = "🌙";
+    title = "야근 확정";
+    resultColor = "#dc2626";
 
-        message =
-        "업무 처리와 협업에서 아쉬운 부분이 있었습니다.<br>" +
-        "다음에는 더 좋은 결과에 도전해보세요!";
+    message =
+    "업무 처리와 협업에서 아쉬운 부분이 있었습니다.<br>" +
+    "오늘의 피드백을 참고하여<br>" +
+    "다음에는 칼퇴에 다시 도전해보세요!";
 
-    }
-
+}
     // --------------------------
     // BEST 역량 / 성장포인트
     // --------------------------
