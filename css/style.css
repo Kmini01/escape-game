@@ -1178,3 +1178,166 @@ transform:scale(.96);
     box-shadow:0 10px 20px rgba(22,163,74,.3);
 
 }
+/* ===========================
+   Ending
+=========================== */
+
+.endingCard{
+
+    max-width:700px;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    animation:pop .45s ease;
+
+}
+
+/* ===========================
+   성과 리포트
+=========================== */
+
+.reportRow{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:10px 0;
+
+    border-bottom:1px solid #e5e7eb;
+
+}
+
+.reportRow:last-child{
+
+    border-bottom:none;
+
+}
+
+.reportTitle{
+
+    font-size:24px;
+
+    font-weight:800;
+
+    color:#2563eb;
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+}
+
+.starScore{
+
+    font-size:20px;
+
+    color:#fbbf24;
+
+    letter-spacing:2px;
+
+    font-weight:700;
+
+}
+
+/* ===========================
+   성장 피드백
+=========================== */
+
+.feedbackBox{
+
+    margin-top:25px;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    background:#eef6ff;
+
+    border:2px solid #bfdbfe;
+
+    text-align:left;
+
+}
+
+.feedbackBox h3{
+
+    text-align:center;
+
+    color:#2563eb;
+
+    margin-bottom:18px;
+
+    font-size:22px;
+
+}
+
+.feedbackItem{
+
+    margin:15px 0;
+
+    line-height:1.8;
+
+}
+
+.feedbackItem strong{
+
+    color:#111827;
+
+}
+
+/* ===========================
+   엔딩 애니메이션
+=========================== */
+
+@keyframes pop{
+
+    0%{
+
+        transform:scale(.85);
+
+        opacity:0;
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+/* ===========================
+   모바일
+=========================== */
+
+@media(max-width:768px){
+
+    .endingCard{
+
+        max-width:95%;
+
+        padding:22px;
+
+    }
+
+    .reportRow{
+
+        font-size:15px;
+
+    }
+
+    .starScore{
+
+        font-size:17px;
+
+    }
+
+}
