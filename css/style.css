@@ -676,8 +676,6 @@ transform:scale(.96);
 
     inset:0;
 
-    display:flex;
-
     justify-content:center;
 
     align-items:center;
@@ -688,6 +686,17 @@ transform:scale(.96);
 
 }
 
+#resultModal.hidden{
+
+    display:none !important;
+
+}
+
+#resultModal:not(.hidden){
+
+    display:flex;
+
+}
 .resultCard{
 
     width:90%;
