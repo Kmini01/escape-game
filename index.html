@@ -19,195 +19,203 @@
 
 <body>
 
-<!-- 시작화면 -->
+<!-- ==========================
+     시작 화면
+========================== -->
 
 <main id="startScreen">
 
-<div class="overlay"></div>
+    <div class="overlay"></div>
 
-<div class="startCard">
+    <div class="startCard">
 
-<div class="logo">
+        <div class="logo">
 
-<div class="missionLabel">
-🎮 LEVEL 1
-</div>
+            <div class="missionLabel">
+                🎮 LEVEL 1
+            </div>
 
-<h1>MISSION</h1>
+            <h1>MISSION</h1>
 
-<h2>칼퇴 대작전!</h2>
+            <h2>칼퇴 대작전!</h2>
 
-<p>
-오늘 하루,<br>
-당신의 선택이 퇴근을 결정합니다.
-</p>
+            <p>
+                오늘 하루,<br>
+                당신의 선택이 퇴근을 결정합니다.
+            </p>
 
-</div>
+        </div>
 
-<div class="playerForm">
+        <div class="playerForm">
 
-<label for="playerName">
+            <label for="playerName">
 
-이름
+                이름
 
-</label>
+            </label>
 
-<input
-id="playerName"
-type="text"
-maxlength="10"
-placeholder="이름을 입력하세요">
+            <input
+            id="playerName"
+            type="text"
+            maxlength="10"
+            placeholder="이름을 입력하세요">
 
-<label>
+            <label>
 
-성별
+                성별
 
-</label>
+            </label>
 
-<div class="genderGroup">
+            <div class="genderGroup">
 
-<button
-type="button"
-class="genderBtn"
-data-gender="male">
+                <button
+                type="button"
+                class="genderBtn"
+                data-gender="male">
 
-👨 남성
+                    👨 남성
 
-</button>
+                </button>
 
-<button
-type="button"
-class="genderBtn"
-data-gender="female">
+                <button
+                type="button"
+                class="genderBtn"
+                data-gender="female">
 
-👩 여성
+                    👩 여성
 
-</button>
+                </button>
 
-</div>
+            </div>
 
-<button
-type="button"
-id="idCardButton"
-class="readyButton">
+            <button
+            type="button"
+            id="idCardButton"
+            class="readyButton">
 
-☐ 출근 준비 완료
+                ☐ 출근 준비 완료
 
-</button>
+            </button>
 
-<button
-type="button"
-id="startButton">
+            <button
+            type="button"
+            id="startButton">
 
-▶ 게임 시작
+                ▶ 게임 시작
 
-</button>
+            </button>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
 </main>
 
-<!-- HUD -->
+<!-- ==========================
+     HUD
+========================== -->
 
 <div id="hud" class="hidden">
 
-<div class="hudItem">
-🕘 <span id="gameTime">09:00</span>
+    <div class="hudItem">
+
+        🕘 <span id="gameTime">09:00</span>
+
+    </div>
+
+    <div class="hudItem">
+
+        ⭐ <span id="score">0</span>점
+
+    </div>
+
+    <div class="hudItem">
+
+        ❤️ <span id="trust">100</span>%
+
+    </div>
+
+    <div class="hudItem">
+
+        📋 <span id="progress">0</span>%
+
+    </div>
+
 </div>
 
-<div class="hudItem">
-⭐ <span id="score">0</span>점
-</div>
-
-<div class="hudItem">
-❤️ <span id="trust">100</span>%
-</div>
-
-<div class="hudItem">
-📋 <span id="progress">0</span>%
-</div>
-
-</div>
-
-<!-- 미션 출력 영역 -->
-
-<div id="gameContainer"></div>
-
-<!-- 출근 준비 완료 -->
+<!-- ==========================
+     사원증 팝업
+========================== -->
 
 <div id="idCardModal" class="hidden">
 
-<div class="idCard">
+    <div class="idCard">
 
-<div class="idTitle">
+        <div class="idTitle">
 
-🎉 출근 준비 완료
+            🎉 출근 준비 완료
 
-</div>
+        </div>
 
-<div class="idName" id="cardName">
+        <div
+        class="idName"
+        id="cardName">
 
-홍길동
+            홍길동
 
-</div>
+        </div>
 
-<div class="idJob">
+        <div class="idJob">
 
-신입사원
+            신입사원
 
-</div>
+        </div>
 
-<div class="idReady">
+        <div class="idReady">
 
-오늘 하루도 힘내세요!
+            오늘 하루도 힘내세요!
 
-</div>
+        </div>
 
-<button
-type="button"
-id="closeCardButton">
-
-출근하기
-
-</button>
+    </div>
 
 </div>
 
-</div>
+<!-- ==========================
+     결과 팝업
+========================== -->
 
-<!-- 결과 팝업 -->
+<div
+id="resultModal"
+class="hidden">
 
-<div id="resultModal" class="hidden">
+    <div class="resultCard">
 
-<div class="resultCard">
+        <div id="resultIcon">
 
-<div id="resultIcon">
+            ✅
 
-✅
+        </div>
 
-</div>
+        <h2 id="resultTitle">
 
-<h2 id="resultTitle">
+            좋은 선택!
 
-좋은 선택!
+        </h2>
 
-</h2>
+        <p id="resultText">
 
-<p id="resultText">
+            결과 내용
 
-결과 내용
+        </p>
 
-</p>
+        <button id="nextMissionButton">
 
-<button id="nextMissionButton">
+            다음 미션 ▶
 
-다음 미션 ▶
+        </button>
 
-</button>
-
-</div>
+    </div>
 
 </div>
 
