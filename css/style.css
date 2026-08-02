@@ -338,12 +338,6 @@ body{
    팝업
 =========================== */
 
-.hidden{
-
-    display:none;
-
-}
-
 #idCardModal{
 
     position:fixed;
@@ -507,7 +501,7 @@ body{
 .playerForm input{
 
     padding:15px;
-
+}
 }
 /* ===========================
    HUD
@@ -523,7 +517,7 @@ body{
 
     transform:translateX(-50%);
 
-    width:92%;
+  width:520px;
 
     max-width:520px;
 
@@ -531,9 +525,9 @@ body{
 
     backdrop-filter:blur(10px);
 
-    border-radius:18px;
-
-    padding:14px 18px;
+  border-radius:24px;
+   
+   padding:18px 24px;
 
     display:flex;
 
@@ -551,7 +545,7 @@ body{
 
 .hudItem{
 
-    font-size:15px;
+    font-size:17px;
 
     font-weight:700;
 
@@ -661,6 +655,11 @@ body{
     transform:translateY(-2px);
 
 }
+.choiceBtn:active{
+
+transform:scale(.96);
+
+}
    /* ===========================
    결과 팝업
 =========================== */
@@ -746,4 +745,70 @@ body{
     cursor:pointer;
 
 }
+/* ===========================
+   Countdown
+=========================== */
+
+#countdownScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(135deg,#0f172a,#1e3a8a);
+
+    z-index:9997;
+
+}
+
+.countBox{
+
+    text-align:center;
+
+    color:white;
+
+}
+
+.levelText{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+}
+
+.countBox h1{
+
+    font-size:52px;
+
+    margin-bottom:15px;
+
+}
+
+.countBox p{
+
+    font-size:20px;
+
+    opacity:.85;
+
+    margin-bottom:30px;
+
+}
+
+#countNumber{
+
+    font-size:96px;
+
+    font-weight:900;
+
+    color:#FACC15;
+
 }
