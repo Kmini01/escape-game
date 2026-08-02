@@ -2049,7 +2049,7 @@ margin-bottom:15px;
 
 <div id="missionContainer">
 
-<div class="missionCard">
+<div class="missionCard endingCard">
 
 <div class="missionLabel">
 
