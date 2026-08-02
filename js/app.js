@@ -352,39 +352,7 @@ updateHUD();
 
 let draggedTask = null;
 
-function showMission2()
-// ==========================
-// Drag & Drop
-// ==========================
-
-function drag(event){
-
-    draggedTask = event.target.id;
-
-}
-
-function allowDrop(event){
-
-    event.preventDefault();
-
-}
-
-function drop(event){
-
-    event.preventDefault();
-
-    const zone = event.target;
-
-    if(!zone.classList.contains("dropZone")) return;
-
-    if(zone.children.length>0) return;
-
-    const task = document.getElementById(draggedTask);
-
-    zone.appendChild(task);
-
-}
-{
+function showMission2(){
 
     document.body.insertAdjacentHTML("beforeend",`
 
@@ -396,97 +364,67 @@ function drop(event){
             📅 MISSION 2
         </div>
 
-        <h2>오늘의 업무 일정표</h2>
+        <h2>오늘의 업무 일정표 만들기</h2>
 
         <p>
-        업무 카드를 드래그하여<br>
-        올바른 시간에 배치하세요.
+            업무 카드를 드래그하여<br>
+            올바른 시간에 배치하세요.
         </p>
 
         <div class="scheduleArea">
 
             <div class="timeRow">
-
-                <div class="time">
-                    09:00
-                </div>
-
+                <div class="time">09:00</div>
                 <div
                     class="dropZone"
                     data-answer="email"
-                    ondrop="drop(event)"
-                    ondragover="allowDrop(event)">
+                    ondragover="allowDrop(event)"
+                    ondrop="drop(event)">
                 </div>
-
             </div>
 
             <div class="timeRow">
-
-                <div class="time">
-                    09:15
-                </div>
-
+                <div class="time">09:15</div>
                 <div
                     class="dropZone"
                     data-answer="print"
-                    ondrop="drop(event)"
-                    ondragover="allowDrop(event)">
+                    ondragover="allowDrop(event)"
+                    ondrop="drop(event)">
                 </div>
-
             </div>
 
             <div class="timeRow">
-
-                <div class="time">
-                    09:35
-                </div>
-
+                <div class="time">09:35</div>
                 <div
                     class="dropZone"
                     data-answer="call"
-                    ondrop="drop(event)"
-                    ondragover="allowDrop(event)">
+                    ondragover="allowDrop(event)"
+                    ondrop="drop(event)">
                 </div>
-
             </div>
 
             <div class="timeRow fixed">
-
-                <div class="time">
-                    10:00
-                </div>
-
+                <div class="time">10:00</div>
                 <div class="fixedTask">
-                    👥 팀회의
+                    👥 팀회의 (30분)
                 </div>
-
             </div>
 
             <div class="timeRow">
-
-                <div class="time">
-                    10:30
-                </div>
-
+                <div class="time">10:30</div>
                 <div
                     class="dropZone"
                     data-answer="report"
-                    ondrop="drop(event)"
-                    ondragover="allowDrop(event)">
+                    ondragover="allowDrop(event)"
+                    ondrop="drop(event)">
                 </div>
-
             </div>
 
             <div class="timeRow fixed">
-
-                <div class="time">
-                    12:00
-                </div>
-
+                <div class="time">12:00</div>
                 <div class="fixedTask">
                     🍱 점심시간
                 </div>
-
             </div>
 
         </div>
@@ -500,11 +438,9 @@ function drop(event){
                 id="email"
                 draggable="true"
                 ondragstart="drag(event)">
-
                 📧 이메일 확인
                 <br>
                 <small>15분</small>
-
             </div>
 
             <div
@@ -512,11 +448,9 @@ function drop(event){
                 id="print"
                 draggable="true"
                 ondragstart="drag(event)">
-
                 📑 회의자료 출력
                 <br>
                 <small>20분</small>
-
             </div>
 
             <div
@@ -524,11 +458,9 @@ function drop(event){
                 id="call"
                 draggable="true"
                 ondragstart="drag(event)">
-
                 📞 거래처 전화
                 <br>
                 <small>20분</small>
-
             </div>
 
             <div
@@ -536,11 +468,9 @@ function drop(event){
                 id="report"
                 draggable="true"
                 ondragstart="drag(event)">
-
                 📊 업무보고 작성
                 <br>
                 <small>60분</small>
-
             </div>
 
         </div>
@@ -548,9 +478,7 @@ function drop(event){
         <button
             id="checkScheduleButton"
             onclick="checkMission2()">
-
             ✅ 일정 확인
-
         </button>
 
     </div>
@@ -560,7 +488,6 @@ function drop(event){
 `);
 
 }
-
 // ==========================
 // Mission 2 정답 확인
 // ==========================
