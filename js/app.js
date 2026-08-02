@@ -489,6 +489,49 @@ function showMission2(){
 
 }
 // ==========================
+// Drag & Drop
+// ==========================
+
+function drag(event){
+
+    draggedTask = event.target.id;
+
+}
+
+function allowDrop(event){
+
+    event.preventDefault();
+
+}
+
+function drop(event){
+
+    event.preventDefault();
+
+    const zone = event.target.closest(".dropZone");
+
+    if(!zone) return;
+
+    const task = document.getElementById(draggedTask);
+
+    const oldZone = task.parentElement;
+
+    if(oldZone.classList.contains("dropZone")){
+
+        oldZone.innerHTML = "";
+
+    }
+
+    if(zone.children.length > 0){
+
+        return;
+
+    }
+
+    zone.appendChild(task);
+
+}
+// ==========================
 // Mission 2 정답 확인
 // ==========================
 
