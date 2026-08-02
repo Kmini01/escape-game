@@ -1,10 +1,10 @@
 // ==========================
 // MISSION : 칼퇴 대작전
-// Version 0.2
+// Version 0.4
 // ==========================
 
-// 선택된 성별 저장
 let gender = "";
+let playerName = "";
 
 // --------------------------
 // 성별 선택
@@ -16,9 +16,7 @@ genderButtons.forEach(button => {
 
     button.addEventListener("click", () => {
 
-        genderButtons.forEach(btn => {
-            btn.classList.remove("active");
-        });
+        genderButtons.forEach(btn => btn.classList.remove("active"));
 
         button.classList.add("active");
 
@@ -29,78 +27,179 @@ genderButtons.forEach(button => {
 });
 
 // --------------------------
-// 사원증 발급
+// 출근 준비 완료
 // --------------------------
 
 document.getElementById("idCardButton").addEventListener("click", () => {
 
-    const name = document.getElementById("playerName").value.trim();
+    playerName = document.getElementById("playerName").value.trim();
 
-    if (name === "") {
+    if(playerName === ""){
         alert("이름을 입력해주세요.");
         return;
     }
 
-    if (gender === "") {
+    if(gender === ""){
         alert("성별을 선택해주세요.");
         return;
     }
 
-    const employeeNo =
-        "EMP-" + Math.floor(1000 + Math.random() * 9000);
-
-    localStorage.setItem("playerName", name);
+    localStorage.setItem("playerName", playerName);
     localStorage.setItem("gender", gender);
-    localStorage.setItem("employeeNo", employeeNo);
 
-    alert(
+    document.getElementById("cardName").textContent = playerName;
 
-`🪪 사원증 발급 완료
-
-이름 : ${name}
-
-직급 : 신입사원
-
-사번 : ${employeeNo}
-
-게임을 시작할 준비가 되었습니다!`
-
-    );
+    document.getElementById("idCardModal").classList.remove("hidden");
 
 });
 
 // --------------------------
-// 게임 시작
+// 출근하기
 // --------------------------
 
-document.getElementById("startButton").addEventListener("click", () => {
+document.getElementById("closeCardButton").addEventListener("click", () => {
 
-    const name = document.getElementById("playerName").value.trim();
+    document.getElementById("idCardModal").classList.add("hidden");
 
-    if (name === "") {
-        alert("이름을 입력해주세요.");
-        return;
-    }
-
-    if (gender === "") {
-        alert("성별을 선택해주세요.");
-        return;
-    }
-
-    localStorage.setItem("playerName", name);
-    localStorage.setItem("gender", gender);
-
-    alert(
-
-`${name}님,
-
-MISSION : 칼퇴 대작전을 시작합니다!
-
-무사히 퇴근하세요!`
-
-    );
-
-    // 다음 버전에서는 여기서 Mission1 화면으로 이동합니다.
-    // window.location.href = "mission1.html";
+    startMission();
 
 });
+
+// --------------------------
+// 게임 시작 버튼
+// (임시 비활성)
+// --------------------------
+
+document.getElementById("startButton").style.display = "none";
+
+// --------------------------
+// Mission 시작
+// --------------------------
+
+function startMission(){
+
+    document.body.innerHTML = `
+
+    <div class="introScreen">
+
+        <div class="introBox">
+
+            <div class="level">
+
+                🎮 LEVEL 1
+
+            </div>
+
+            <h1>
+
+                칼퇴 대작전
+
+            </h1>
+
+            <p>
+
+                오늘은 입사 첫날입니다.
+
+            </p>
+
+            <div id="countdown">
+
+                3
+
+            </div>
+
+        </div>
+
+    </div>
+
+    `;
+
+    let count = 3;
+
+    const timer = setInterval(()=>{
+
+        count--;
+
+        if(count>0){
+
+            document.getElementById("countdown").textContent=count;
+
+        }else if(count===0){
+
+            document.getElementById("countdown").textContent="START";
+
+        }else{
+
+            clearInterval(timer);
+
+            showMission1();
+
+        }
+
+    },1000);
+
+}
+
+// --------------------------
+// Mission1
+// --------------------------
+
+function showMission1(){
+
+    document.body.innerHTML=`
+
+    <div class="missionScreen">
+
+        <div class="missionCard">
+
+            <div class="missionTitle">
+
+                🌧️ Mission 1
+
+            </div>
+
+            <h2>
+
+                출근부터 위기!
+
+            </h2>
+
+            <p>
+
+                폭우로 인해 지하철이 20분 연착되었습니다.
+
+                가장 먼저 어떻게 하시겠습니까?
+
+            </p>
+
+            <button class="choice">
+
+                팀장에게 먼저 연락한다.
+
+            </button>
+
+            <button class="choice">
+
+                지하철을 계속 기다린다.
+
+            </button>
+
+            <button class="choice">
+
+                택시를 탄다.
+
+            </button>
+
+            <button class="choice">
+
+                아무 연락도 하지 않는다.
+
+            </button>
+
+        </div>
+
+    </div>
+
+    `;
+
+}
