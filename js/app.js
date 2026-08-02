@@ -350,56 +350,206 @@ updateHUD();
 // 오늘의 업무 일정표
 // ==========================
 
-function showMission2(){
+let draggedTask = null;
+
+function showMission2()
+// ==========================
+// Drag & Drop
+// ==========================
+
+function drag(event){
+
+    draggedTask = event.target.id;
+
+}
+
+function allowDrop(event){
+
+    event.preventDefault();
+
+}
+
+function drop(event){
+
+    event.preventDefault();
+
+    const zone = event.target;
+
+    if(!zone.classList.contains("dropZone")) return;
+
+    if(zone.children.length>0) return;
+
+    const task = document.getElementById(draggedTask);
+
+    zone.appendChild(task);
+
+}
+{
 
     document.body.insertAdjacentHTML("beforeend",`
 
 <div id="missionContainer">
 
-    <div class="missionCard">
+    <div class="missionCard missionSchedule">
 
         <div class="missionLabel">
-
             📅 MISSION 2
+        </div>
+
+        <h2>오늘의 업무 일정표</h2>
+
+        <p>
+        업무 카드를 드래그하여<br>
+        올바른 시간에 배치하세요.
+        </p>
+
+        <div class="scheduleArea">
+
+            <div class="timeRow">
+
+                <div class="time">
+                    09:00
+                </div>
+
+                <div
+                    class="dropZone"
+                    data-answer="email"
+                    ondrop="drop(event)"
+                    ondragover="allowDrop(event)">
+                </div>
+
+            </div>
+
+            <div class="timeRow">
+
+                <div class="time">
+                    09:15
+                </div>
+
+                <div
+                    class="dropZone"
+                    data-answer="print"
+                    ondrop="drop(event)"
+                    ondragover="allowDrop(event)">
+                </div>
+
+            </div>
+
+            <div class="timeRow">
+
+                <div class="time">
+                    09:35
+                </div>
+
+                <div
+                    class="dropZone"
+                    data-answer="call"
+                    ondrop="drop(event)"
+                    ondragover="allowDrop(event)">
+                </div>
+
+            </div>
+
+            <div class="timeRow fixed">
+
+                <div class="time">
+                    10:00
+                </div>
+
+                <div class="fixedTask">
+                    👥 팀회의
+                </div>
+
+            </div>
+
+            <div class="timeRow">
+
+                <div class="time">
+                    10:30
+                </div>
+
+                <div
+                    class="dropZone"
+                    data-answer="report"
+                    ondrop="drop(event)"
+                    ondragover="allowDrop(event)">
+                </div>
+
+            </div>
+
+            <div class="timeRow fixed">
+
+                <div class="time">
+                    12:00
+                </div>
+
+                <div class="fixedTask">
+                    🍱 점심시간
+                </div>
+
+            </div>
 
         </div>
 
-        <h2>
+        <h3>업무 카드</h3>
 
-            오늘의 업무 일정표 만들기
+        <div id="taskArea">
 
-        </h2>
+            <div
+                class="taskCard"
+                id="email"
+                draggable="true"
+                ondragstart="drag(event)">
 
-        <p>
+                📧 이메일 확인
+                <br>
+                <small>15분</small>
 
-            팀장님이 오늘 해야 할 업무를 전달했습니다.<br><br>
+            </div>
 
-            <b>회의 시간을 고려하여</b><br>
-            가장 적절한 일정표를 선택하세요.
+            <div
+                class="taskCard"
+                id="print"
+                draggable="true"
+                ondragstart="drag(event)">
 
-        </p>
+                📑 회의자료 출력
+                <br>
+                <small>20분</small>
 
-        <button class="choiceBtn" onclick="selectMission2(1)">
+            </div>
 
-            📧 이메일 → 📑 회의자료 → 📞 거래처 → 👥 팀회의 → 📊 업무보고
+            <div
+                class="taskCard"
+                id="call"
+                draggable="true"
+                ondragstart="drag(event)">
 
-        </button>
+                📞 거래처 전화
+                <br>
+                <small>20분</small>
 
-        <button class="choiceBtn" onclick="selectMission2(2)">
+            </div>
 
-            📊 업무보고 → 📧 이메일 → 👥 팀회의 → 📑 회의자료
+            <div
+                class="taskCard"
+                id="report"
+                draggable="true"
+                ondragstart="drag(event)">
 
-        </button>
+                📊 업무보고 작성
+                <br>
+                <small>60분</small>
 
-        <button class="choiceBtn" onclick="selectMission2(3)">
+            </div>
 
-            📞 거래처 → 📊 업무보고 → 📑 회의자료 → 👥 팀회의
+        </div>
 
-        </button>
+        <button
+            id="checkScheduleButton"
+            onclick="checkMission2()">
 
-        <button class="choiceBtn" onclick="selectMission2(4)">
-
-            📑 회의자료 → 📧 이메일 → 📊 업무보고 → 👥 팀회의
+            ✅ 일정 확인
 
         </button>
 
@@ -410,44 +560,61 @@ function showMission2(){
 `);
 
 }
+
 // ==========================
-// Mission 2 선택
+// Mission 2 정답 확인
 // ==========================
 
-function selectMission2(answer){
+function checkMission2(){
+
+    let correct = true;
+
+    document.querySelectorAll(".dropZone").forEach(zone=>{
+
+        const answer = zone.dataset.answer;
+
+        const task = zone.firstElementChild;
+
+        if(!task || task.id !== answer){
+
+            correct = false;
+
+        }
+
+    });
 
     document.getElementById("missionContainer").remove();
 
-    if(answer===1){
+    if(correct){
 
         game.score += 20;
         game.trust += 5;
         game.progress += 10;
-        game.time = "10:00";
+        game.time = "10:30";
+
+        updateHUD();
 
         showResult(
             "📅",
             "일정 계획 완료!",
-            "회의 시간을 고려하여<br>업무 우선순위를 적절하게 계획했습니다.<br><br>⭐ 업무점수 +20<br>❤️ 신뢰도 +5"
+            "업무를 우선순위에 맞게 배치했습니다.<br><br>⭐ 업무점수 +20<br>❤️ 신뢰도 +5"
         );
 
-    }
-
-    else{
+    }else{
 
         game.score -= 10;
         game.trust -= 5;
         game.progress += 10;
-        game.time = "10:10";
+        game.time = "10:30";
+
+        updateHUD();
 
         showResult(
             "❌",
             "일정 계획 실패",
-            "회의 전에 필요한 업무가<br>계획되지 않았습니다.<br><br>⭐ 업무점수 -10<br>❤️ 신뢰도 -5"
+            "회의 시간을 고려하여<br>업무를 다시 계획해보세요.<br><br>⭐ 업무점수 -10"
         );
 
     }
-
-    updateHUD();
 
 }
