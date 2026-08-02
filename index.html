@@ -3,193 +3,215 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MISSION : 칼퇴 대작전!</title>
+<title>MISSION : 칼퇴 대작전!</title>
 
-    <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-    <main id="startScreen">
+<!-- 시작화면 -->
 
-        <div class="overlay"></div>
+<main id="startScreen">
 
-        <div class="startCard">
+<div class="overlay"></div>
 
-            <div class="logo">
+<div class="startCard">
 
-                <div class="missionLabel">
-                    🎮 LEVEL 1
-                </div>
+<div class="logo">
 
-                <h1>MISSION</h1>
+<div class="missionLabel">
+🎮 LEVEL 1
+</div>
 
-                <h2>칼퇴 대작전!</h2>
+<h1>MISSION</h1>
 
-                <p>
-                    오늘 하루,<br>
-                    당신의 선택이 퇴근을 결정합니다.
-                </p>
+<h2>칼퇴 대작전!</h2>
 
-            </div>
+<p>
+오늘 하루,<br>
+당신의 선택이 퇴근을 결정합니다.
+</p>
 
-            <div class="playerForm">
+</div>
 
-                <label for="playerName">
-                    이름
-                </label>
+<div class="playerForm">
 
-                <input
-                    id="playerName"
-                    type="text"
-                    maxlength="10"
-                    placeholder="이름을 입력하세요">
+<label for="playerName">
 
-                <label>
-                    성별
-                </label>
+이름
 
-                <div class="genderGroup">
+</label>
 
-                    <button
-                        type="button"
-                        class="genderBtn"
-                        data-gender="male">
+<input
+id="playerName"
+type="text"
+maxlength="10"
+placeholder="이름을 입력하세요">
 
-                        👨 남성
+<label>
 
-                    </button>
+성별
 
-                    <button
-                        type="button"
-                        class="genderBtn"
-                        data-gender="female">
+</label>
 
-                        👩 여성
+<div class="genderGroup">
 
-                    </button>
+<button
+type="button"
+class="genderBtn"
+data-gender="male">
 
-                </div>
+👨 남성
 
-                <button
-                    type="button"
-                    id="idCardButton">
+</button>
 
-                    🪪 출근 준비 완료
+<button
+type="button"
+class="genderBtn"
+data-gender="female">
 
-                </button>
+👩 여성
 
-                <button
-                    type="button"
-                    id="startButton">
+</button>
 
-                    ▶ 게임 시작
+</div>
 
-                </button>
+<button
+type="button"
+id="idCardButton">
 
-            </div>
+🪪 출근 준비 완료
 
-        </div>
+</button>
 
-    </main>
+<button
+type="button"
+id="startButton">
 
-    <!-- 출근 준비 완료 팝업 -->
+▶ 게임 시작
 
-    <div id="idCardModal" class="hidden">
+</button>
 
-        <div class="idCard">
+</div>
 
-            <div class="idTitle">
+</div>
 
-                🎉 출근 준비 완료
+</main>
 
-            </div>
+<!-- HUD -->
 
-            <div class="idName" id="cardName">
+<div id="hud" class="hidden">
 
-                홍길동
+<div class="hudItem">
+🕘 <span id="gameTime">09:00</span>
+</div>
 
-            </div>
+<div class="hudItem">
+⭐ <span id="score">0</span>점
+</div>
 
-            <div class="idJob">
+<div class="hudItem">
+❤️ <span id="trust">100</span>%
+</div>
 
-                신입사원
+<div class="hudItem">
+📋 <span id="progress">0</span>%
+</div>
 
-            </div>
+</div>
 
-            <div class="idReady">
+<!-- 미션 출력 영역 -->
 
-                오늘 하루도 힘내세요!
+<div id="gameContainer"></div>
 
-            </div>
+<!-- 출근 준비 완료 -->
 
-            <button
-                type="button"
-                id="closeCardButton">
+<div id="idCardModal" class="hidden">
 
-                출근하기
+<div class="idCard">
 
-            </button>
+<div class="idTitle">
 
-        </div>
+🎉 출근 준비 완료
 
-    </div>
+</div>
 
-    <script src="js/app.js"></script>
+<div class="idName" id="cardName">
 
-</body>
-    <!-- 결과 팝업 -->
+홍길동
+
+</div>
+
+<div class="idJob">
+
+신입사원
+
+</div>
+
+<div class="idReady">
+
+오늘 하루도 힘내세요!
+
+</div>
+
+<button
+type="button"
+id="closeCardButton">
+
+출근하기
+
+</button>
+
+</div>
+
+</div>
+
+<!-- 결과 팝업 -->
 
 <div id="resultModal" class="hidden">
 
-    <div class="resultCard">
+<div class="resultCard">
 
-        <div id="resultIcon">✅</div>
+<div id="resultIcon">
 
-        <h2 id="resultTitle">좋은 선택!</h2>
-
-        <p id="resultText">
-
-            결과 내용
-
-        </p>
-
-        <button id="nextMissionButton">
-
-            다음 ▶
-
-        </button>
-
-    </div>
+✅
 
 </div>
-<div id="hud" class="hidden">
 
-    <div class="hudItem">
-        🕘 <span id="gameTime">09:00</span>
-    </div>
+<h2 id="resultTitle">
 
-    <div class="hudItem">
-        ⭐ <span id="score">0</span>점
-    </div>
+좋은 선택!
 
-    <div class="hudItem">
-        ❤️ <span id="trust">100</span>%
-    </div>
+</h2>
 
-    <div class="hudItem">
-        📋 <span id="progress">0</span>%
-    </div>
+<p id="resultText">
+
+결과 내용
+
+</p>
+
+<button id="nextMissionButton">
+
+다음 미션 ▶
+
+</button>
 
 </div>
+
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+
 </html>
