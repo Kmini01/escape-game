@@ -276,7 +276,17 @@ function showMission1() {
 // ==========================
 // 선택
 // ==========================
+function showResult(icon,title,text){
 
+    document.getElementById("resultIcon").textContent=icon;
+
+    document.getElementById("resultTitle").textContent=title;
+
+    document.getElementById("resultText").innerHTML=text;
+
+    document.getElementById("resultModal").classList.remove("hidden");
+
+}
 function selectAnswer(answer){
 
     document.getElementById("missionContainer").remove();
@@ -290,15 +300,15 @@ function selectAnswer(answer){
 
         updateHUD();
 
-        alert(
-`✅ 좋은 선택입니다!
+       showResult(
 
-지각 가능성을 먼저 공유하면
-신뢰를 얻을 수 있습니다.
+"✅",
 
-+20점`
+"좋은 선택!",
+
+"팀장에게 먼저 연락하여<br>상황을 공유했습니다.<br><br>⭐ 업무점수 +20"
+
 );
-
     }
 
     else if(answer===2){
@@ -310,15 +320,15 @@ function selectAnswer(answer){
 
         updateHUD();
 
-        alert(
-`△ 무난한 선택입니다.
+    showResult(
 
-하지만 먼저 연락하는 것이
-더 좋은 방법입니다.
+"🙂",
 
-+10점`
+"무난한 선택",
+
+"기다리는 것도 가능하지만<br>먼저 연락하는 것이 더 좋았습니다.<br><br>⭐ 업무점수 +10"
+
 );
-
     }
 
     else if(answer===3){
@@ -330,14 +340,15 @@ function selectAnswer(answer){
 
         updateHUD();
 
-        alert(
-`○ 빠르게 출근했습니다.
+showResult(
 
-하지만 비용도 고려해야 합니다.
+"🚖",
 
-+15점`
+"빠른 판단",
+
+"시간은 지켰지만<br>비용도 함께 고려해야 합니다.<br><br>⭐ 업무점수 +15"
+
 );
-
     }
 
     else{
@@ -352,12 +363,14 @@ function selectAnswer(answer){
 
         updateHUD();
 
-        alert(
-`❌ 연락 없이 지각했습니다.
+     showResult(
 
-신뢰도가 감소했습니다.
+"❌",
 
--10점`
+"아쉬운 선택",
+
+"연락 없이 지각하여<br>신뢰도가 감소했습니다.<br><br>❤️ 신뢰도 -10"
+
 );
 
     }
@@ -369,4 +382,15 @@ function selectAnswer(answer){
     },300);
 
 }
+    document
+.getElementById("nextMissionButton")
+.addEventListener("click",()=>{
+
+    document
+    .getElementById("resultModal")
+    .classList.add("hidden");
+
+    alert("Mission 2가 이어질 예정입니다.");
+
+});
 }
