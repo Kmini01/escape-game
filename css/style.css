@@ -341,21 +341,27 @@ body{
 #idCardModal{
 
     position:fixed;
-
     inset:0;
 
     background:rgba(0,0,0,.65);
 
-    display:flex;
-
     justify-content:center;
-
     align-items:center;
 
     z-index:999;
+}
+
+#idCardModal.hidden{
+
+    display:none;
 
 }
 
+#idCardModal:not(.hidden){
+
+    display:flex;
+
+}
 .idCard{
 
     width:320px;
