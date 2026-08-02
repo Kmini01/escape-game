@@ -19,8 +19,6 @@ let game = {
 
     progress: 0,
 
-    day: 1,
-
     time: "09:00"
 
 };
@@ -37,8 +35,7 @@ function updateHUD() {
 
     document.getElementById("trust").textContent = game.trust;
 
-    document.getElementById("day").textContent = game.day;
-
+   document.getElementById("progress").textContent = game.progress;
 }
 
 // --------------------------
