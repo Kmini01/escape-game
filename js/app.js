@@ -1055,7 +1055,11 @@ function checkMission4(){
 // 업무보고서 작성
 // ==========================
 
+let selectedFiles = [];
+
 function showMission5(){
+
+    selectedFiles = [];
 
     document.body.insertAdjacentHTML("beforeend",`
 
@@ -1064,16 +1068,10 @@ function showMission5(){
     <div class="missionCard">
 
         <div class="missionLabel">
-
             📊 MISSION 5
-
         </div>
 
-        <h2>
-
-            업무보고서 작성
-
-        </h2>
+        <h2>업무보고서 작성</h2>
 
         <p>
 
@@ -1083,51 +1081,111 @@ function showMission5(){
 
             <b>「2026년 상반기 ESG 활동 실적 보고서」</b>를 작성해주세요.<br><br>
 
-            보고서 작성에 가장 필요한 자료 <b>2개</b>를 선택하세요.
+            보고서 작성에 필요한 자료 <b>2개</b>를 선택하세요.
 
         </p>
 
         <div class="fileList">
 
-            <label class="fileItem">
+            <div
+                class="fileItem"
+                onclick="selectFile(this,'2026')">
 
-                <input type="checkbox" value="2026">
+                <span class="fileIcon">📊</span>
 
-                📊 2026 상반기 ESG 실적.xlsx
+                <span class="fileName">
 
-            </label>
+                    2026 상반기 ESG 실적.xlsx
 
-            <label class="fileItem">
+                </span>
 
-                <input type="checkbox" value="report">
+                <span class="fileDate">
 
-                📄 2025 상반기 ESG 보고서.docx
+                    2026-07-30
 
-            </label>
+                </span>
 
-            <label class="fileItem">
+            </div>
 
-                <input type="checkbox" value="2025">
+            <div
+                class="fileItem"
+                onclick="selectFile(this,'report')">
 
-                📊 2025 상반기 ESG 실적.xlsx
+                <span class="fileIcon">📄</span>
 
-            </label>
+                <span class="fileName">
 
-            <label class="fileItem">
+                    2025 상반기 ESG 보고서.docx
 
-                <input type="checkbox" value="memo">
+                </span>
 
-                📝 ESG 회의 메모.txt
+                <span class="fileDate">
 
-            </label>
+                    2025-12-20
 
-            <label class="fileItem">
+                </span>
 
-                <input type="checkbox" value="logo">
+            </div>
 
-                🖼 회사 로고.png
+            <div
+                class="fileItem"
+                onclick="selectFile(this,'2025')">
 
-            </label>
+                <span class="fileIcon">📊</span>
+
+                <span class="fileName">
+
+                    2025 상반기 ESG 실적.xlsx
+
+                </span>
+
+                <span class="fileDate">
+
+                    2025-07-25
+
+                </span>
+
+            </div>
+
+            <div
+                class="fileItem"
+                onclick="selectFile(this,'memo')">
+
+                <span class="fileIcon">📝</span>
+
+                <span class="fileName">
+
+                    ESG 회의 메모.txt
+
+                </span>
+
+                <span class="fileDate">
+
+                    2026-07-28
+
+                </span>
+
+            </div>
+
+            <div
+                class="fileItem"
+                onclick="selectFile(this,'logo')">
+
+                <span class="fileIcon">🖼️</span>
+
+                <span class="fileName">
+
+                    회사 로고.png
+
+                </span>
+
+                <span class="fileDate">
+
+                    2026-01-15
+
+                </span>
+
+            </div>
 
         </div>
 
@@ -1146,16 +1204,45 @@ function showMission5(){
 `);
 
 }
+
+// ==========================
+// 파일 선택
+// ==========================
+
+function selectFile(element,value){
+
+    if(element.classList.contains("selected")){
+
+        element.classList.remove("selected");
+
+        selectedFiles =
+        selectedFiles.filter(v=>v!==value);
+
+        return;
+
+    }
+
+    if(selectedFiles.length>=2){
+
+        alert("파일은 2개만 선택할 수 있습니다.");
+
+        return;
+
+    }
+
+    element.classList.add("selected");
+
+    selectedFiles.push(value);
+
+}
+
 // ==========================
 // Mission5 채점
 // ==========================
 
 function checkMission5(){
 
-    const checked =
-    [...document.querySelectorAll(".fileList input:checked")];
-
-    if(checked.length!==2){
+    if(selectedFiles.length!==2){
 
         alert("파일 2개를 선택해주세요.");
 
@@ -1163,13 +1250,11 @@ function checkMission5(){
 
     }
 
-    const values = checked.map(item=>item.value);
-
     document.getElementById("missionContainer").remove();
 
     const correct =
-    values.includes("2026") &&
-    values.includes("report");
+    selectedFiles.includes("2026") &&
+    selectedFiles.includes("report");
 
     if(correct){
 
@@ -1186,7 +1271,7 @@ function checkMission5(){
 
             "자료 선택 성공!",
 
-            "최신 실적 데이터와<br>작년 보고서를 함께 참고하여<br>효율적으로 업무보고서를 작성했습니다.<br><br>⭐ 업무점수 +20<br>❤️ 신뢰도 +5"
+            "최신 실적 데이터와 작년 보고서를 함께 참고하여 업무보고서를 작성했습니다.<br><br>⭐ 업무점수 +20<br>❤️ 신뢰도 +5"
 
         );
 
@@ -1207,41 +1292,10 @@ function checkMission5(){
 
             "자료 선택 실패",
 
-            "최신 데이터와 기존 양식을 함께 확인해야<br>정확한 업무보고서를 작성할 수 있습니다.<br><br>⭐ 업무점수 -10<br>❤️ 신뢰도 -5"
+            "최신 데이터와 기존 보고서 양식을 함께 확인해야 합니다.<br><br>⭐ 업무점수 -10<br>❤️ 신뢰도 -5"
 
         );
 
     }
-
-}
-// ==========================
-// Mission5 파일 선택
-// ==========================
-
-let selectedFiles = [];
-
-function selectFile(element, value){
-
-    if(element.classList.contains("selected")){
-
-        element.classList.remove("selected");
-
-        selectedFiles = selectedFiles.filter(v=>v!==value);
-
-        return;
-
-    }
-
-    if(selectedFiles.length>=2){
-
-        alert("파일은 2개만 선택할 수 있습니다.");
-
-        return;
-
-    }
-
-    element.classList.add("selected");
-
-    selectedFiles.push(value);
 
 }
