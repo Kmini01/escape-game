@@ -335,7 +335,7 @@ document
     .getElementById("resultModal")
     .classList.add("hidden");
 
-    alert("Mission 2가 이어질 예정입니다.");
+    showMission2();
 
 });
 
@@ -344,3 +344,110 @@ document
 // ==========================
 
 updateHUD();
+
+// ==========================
+// Mission 2
+// 오늘의 업무 일정표
+// ==========================
+
+function showMission2(){
+
+    document.body.insertAdjacentHTML("beforeend",`
+
+<div id="missionContainer">
+
+    <div class="missionCard">
+
+        <div class="missionLabel">
+
+            📅 MISSION 2
+
+        </div>
+
+        <h2>
+
+            오늘의 업무 일정표 만들기
+
+        </h2>
+
+        <p>
+
+            팀장님이 오늘 해야 할 업무를 전달했습니다.<br><br>
+
+            <b>회의 시간을 고려하여</b><br>
+            가장 적절한 일정표를 선택하세요.
+
+        </p>
+
+        <button class="choiceBtn" onclick="selectMission2(1)">
+
+            📧 이메일 → 📑 회의자료 → 📞 거래처 → 👥 팀회의 → 📊 업무보고
+
+        </button>
+
+        <button class="choiceBtn" onclick="selectMission2(2)">
+
+            📊 업무보고 → 📧 이메일 → 👥 팀회의 → 📑 회의자료
+
+        </button>
+
+        <button class="choiceBtn" onclick="selectMission2(3)">
+
+            📞 거래처 → 📊 업무보고 → 📑 회의자료 → 👥 팀회의
+
+        </button>
+
+        <button class="choiceBtn" onclick="selectMission2(4)">
+
+            📑 회의자료 → 📧 이메일 → 📊 업무보고 → 👥 팀회의
+
+        </button>
+
+    </div>
+
+</div>
+
+`);
+
+}
+// ==========================
+// Mission 2 선택
+// ==========================
+
+function selectMission2(answer){
+
+    document.getElementById("missionContainer").remove();
+
+    if(answer===1){
+
+        game.score += 20;
+        game.trust += 5;
+        game.progress += 10;
+        game.time = "10:00";
+
+        showResult(
+            "📅",
+            "일정 계획 완료!",
+            "회의 시간을 고려하여<br>업무 우선순위를 적절하게 계획했습니다.<br><br>⭐ 업무점수 +20<br>❤️ 신뢰도 +5"
+        );
+
+    }
+
+    else{
+
+        game.score -= 10;
+        game.trust -= 5;
+        game.progress += 10;
+        game.time = "10:10";
+
+        showResult(
+            "❌",
+            "일정 계획 실패",
+            "회의 전에 필요한 업무가<br>계획되지 않았습니다.<br><br>⭐ 업무점수 -10<br>❤️ 신뢰도 -5"
+        );
+
+    }
+
+    updateHUD();
+
+}
