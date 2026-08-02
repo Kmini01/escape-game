@@ -499,7 +499,6 @@ function checkMission2(){
     document.querySelectorAll(".dropZone").forEach(zone=>{
 
         const answer = zone.dataset.answer;
-
         const task = zone.firstElementChild;
 
         if(!task || task.id !== answer){
@@ -522,9 +521,9 @@ function checkMission2(){
         updateHUD();
 
         showResult(
-            "📅",
+            "🎉",
             "일정 계획 완료!",
-            "업무를 우선순위에 맞게 배치했습니다.<br><br>⭐ 업무점수 +20<br>❤️ 신뢰도 +5"
+            "업무를 우선순위에 맞게 계획했습니다.<br><br>⭐ 업무점수 +20<br>❤️ 신뢰도 +5"
         );
 
     }else{
@@ -539,7 +538,7 @@ function checkMission2(){
         showResult(
             "❌",
             "일정 계획 실패",
-            "회의 시간을 고려하여<br>업무를 다시 계획해보세요.<br><br>⭐ 업무점수 -10"
+            "회의 시간을 고려하여<br>업무를 다시 계획해보세요.<br><br>⭐ 업무점수 -10<br>❤️ 신뢰도 -5"
         );
 
     }
