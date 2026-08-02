@@ -10,7 +10,7 @@
 
 let gender = "";
 let playerName = "";
-
+let isReady = false;
 const game = {
 
     score: 0,
@@ -57,27 +57,21 @@ genderButtons.forEach(button=>{
 // 출근 준비 완료
 // --------------------------
 
-document.getElementById("idCardButton").addEventListener("click",()=>{
+isReady = !isReady;
 
-    playerName = document.getElementById("playerName").value.trim();
+    const btn = document.getElementById("idCardButton");
 
-    if(playerName===""){
+    if(isReady){
 
-        alert("이름을 입력해주세요.");
-        return;
+        btn.innerHTML = "✅ 출근 준비 완료";
+        btn.style.background = "#16a34a";
 
-    }
+    }else{
 
-    if(gender===""){
-
-        alert("성별을 선택해주세요.");
-        return;
+        btn.innerHTML = "🪪 출근 준비 완료";
+        btn.style.background = "#2563eb";
 
     }
-
-    document.getElementById("cardName").textContent = playerName;
-
-    document.getElementById("idCardModal").classList.remove("hidden");
 
 });
 
