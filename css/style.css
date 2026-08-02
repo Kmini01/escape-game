@@ -1,7 +1,6 @@
-
 /* ===========================
    MISSION : 칼퇴 대작전
-   Version 0.1
+   Version 0.3
 =========================== */
 
 *{
@@ -14,23 +13,26 @@ body{
 
     font-family:'Pretendard',sans-serif;
 
-    background:#0f172a;
+    background:
+    radial-gradient(circle at top,#274690 0%,#0f172a 65%);
 
-    color:white;
+    color:#fff;
 
-    height:100vh;
+    min-height:100vh;
 
     overflow:hidden;
 
 }
 
-/* 배경 */
+/* ===========================
+   시작화면
+=========================== */
 
 #startScreen{
 
     width:100%;
 
-    height:100vh;
+    min-height:100vh;
 
     display:flex;
 
@@ -38,13 +40,11 @@ body{
 
     align-items:center;
 
-    background:linear-gradient(135deg,#0f172a,#1e3a8a);
-
     position:relative;
 
-}
+    padding:20px;
 
-/* 어두운 오버레이 */
+}
 
 .overlay{
 
@@ -56,29 +56,63 @@ body{
 
 }
 
-/* 카드 */
+/* ===========================
+   카드
+=========================== */
 
 .startCard{
-
-    width:92%;
-
-    max-width:420px;
-
-    background:white;
-
-    color:#222;
-
-    border-radius:28px;
-
-    padding:40px 30px;
 
     position:relative;
 
     z-index:2;
 
-    box-shadow:0 20px 60px rgba(0,0,0,.35);
+    width:100%;
 
-    animation:fadeUp .7s ease;
+    max-width:420px;
+
+    background:#fff;
+
+    color:#222;
+
+    border-radius:30px;
+
+    padding:40px 30px;
+
+    overflow:hidden;
+
+    border:4px solid rgba(255,255,255,.15);
+
+    box-shadow:0 25px 70px rgba(0,0,0,.35);
+
+    animation:fadeUp .6s ease;
+
+}
+
+.startCard::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:8px;
+
+    background:#FACC15;
+
+}
+
+/* ===========================
+   타이틀
+=========================== */
+
+.logo{
+
+    text-align:center;
 
 }
 
@@ -86,17 +120,17 @@ body{
 
     display:inline-block;
 
-    background:#1d4ed8;
+    background:#FACC15;
 
-    color:white;
+    color:#111827;
 
-    padding:8px 16px;
+    padding:10px 20px;
 
-    border-radius:100px;
+    border-radius:999px;
 
-    font-size:13px;
+    font-weight:800;
 
-    font-weight:700;
+    font-size:14px;
 
     margin-bottom:18px;
 
@@ -104,27 +138,41 @@ body{
 
 .logo h1{
 
-    font-size:42px;
+    color:#2563eb;
 
-    font-weight:800;
+    letter-spacing:6px;
 
-    color:#0f172a;
+    font-size:18px;
 
-    margin-bottom:14px;
+    margin-bottom:12px;
+
+}
+
+.logo h2{
+
+    font-size:46px;
+
+    font-weight:900;
+
+    color:#111827;
+
+    margin-bottom:16px;
 
 }
 
 .logo p{
 
-    color:#555;
+    color:#666;
 
-    line-height:1.6;
+    line-height:1.7;
 
     margin-bottom:35px;
 
 }
 
-/* 입력 */
+/* ===========================
+   입력
+=========================== */
 
 .playerForm label{
 
@@ -142,13 +190,15 @@ body{
 
     padding:16px;
 
-    border-radius:14px;
+    border-radius:16px;
 
-    border:2px solid #ddd;
+    border:2px solid #dbe4ef;
+
+    margin-bottom:22px;
 
     font-size:16px;
 
-    margin-bottom:22px;
+    transition:.3s;
 
 }
 
@@ -160,7 +210,15 @@ body{
 
 }
 
-/* 성별 */
+.playerForm input:hover{
+
+    transform:scale(1.02);
+
+}
+
+/* ===========================
+   성별
+=========================== */
 
 .genderGroup{
 
@@ -168,7 +226,7 @@ body{
 
     gap:12px;
 
-    margin-bottom:28px;
+    margin-bottom:22px;
 
 }
 
@@ -180,7 +238,7 @@ body{
 
     border:none;
 
-    border-radius:14px;
+    border-radius:16px;
 
     background:#eef2ff;
 
@@ -194,6 +252,8 @@ body{
 
 .genderBtn:hover{
 
+    transform:translateY(-3px);
+
     background:#dbeafe;
 
 }
@@ -206,7 +266,41 @@ body{
 
 }
 
-/* 시작버튼 */
+/* ===========================
+   버튼
+=========================== */
+
+#idCardButton{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    margin-bottom:14px;
+
+    transition:.25s;
+
+}
+
+#idCardButton:hover{
+
+    transform:translateY(-3px);
+
+}
 
 #startButton{
 
@@ -218,9 +312,9 @@ body{
 
     border-radius:16px;
 
-    background:#facc15;
+    background:#FACC15;
 
-    color:#222;
+    color:#111827;
 
     font-size:20px;
 
@@ -236,248 +330,12 @@ body{
 
     transform:translateY(-3px);
 
-    box-shadow:0 12px 25px rgba(250,204,21,.45);
+    box-shadow:0 12px 25px rgba(250,204,21,.4);
 
 }
 
-@keyframes fadeUp{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(30px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-#idCardButton{
-
-    width:100%;
-
-    padding:16px;
-
-    margin-bottom:14px;
-
-    border:none;
-
-    border-radius:16px;
-
-    background:#2563eb;
-
-    color:white;
-
-    font-size:18px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-}
-
-#idCardButton:hover{
-
-    transform:translateY(-2px);
-
-}
 /* ===========================
-   GAME UI Upgrade v0.2
-===========================*/
-
-body{
-
-    background:
-    radial-gradient(circle at top,#274690 0%,#0f172a 65%);
-
-}
-
-/* 카드 */
-
-.startCard{
-
-    overflow:hidden;
-
-    backdrop-filter:blur(12px);
-
-    border:4px solid rgba(255,255,255,.15);
-
-}
-
-/* 카드 위 노란 라인 */
-
-.startCard::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-
-    left:0;
-
-    width:100%;
-
-    height:8px;
-
-    background:#facc15;
-
-}
-
-/* 제목 */
-
-.logo{
-
-    text-align:center;
-
-}
-
-.logo h1{
-
-    font-size:18px;
-
-    letter-spacing:8px;
-
-    color:#2563eb;
-
-    margin-top:15px;
-
-}
-
-.logo h2{
-
-    font-size:48px;
-
-    font-weight:900;
-
-    margin:12px 0;
-
-    color:#111827;
-
-}
-
-.logo p{
-
-    margin-top:15px;
-
-}
-
-/* 입력 */
-
-.playerForm input{
-
-    transition:.3s;
-
-}
-
-.playerForm input:hover{
-
-    transform:scale(1.02);
-
-}
-
-/* 버튼 */
-
-.genderBtn,
-#idCardButton,
-#startButton{
-
-    transition:.25s;
-
-}
-
-.genderBtn:hover,
-#idCardButton:hover,
-#startButton:hover{
-
-    transform:translateY(-3px);
-
-}
-
-/* 사원증 버튼 */
-
-#idCardButton{
-
-    width:100%;
-
-    margin-bottom:15px;
-
-    padding:18px;
-
-    border:none;
-
-    border-radius:16px;
-
-    background:#2563eb;
-
-    color:white;
-
-    font-size:18px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-}
-
-/* 게임시작 버튼 */
-
-#startButton{
-
-    margin-top:5px;
-
-}
-
-/* 하단 */
-
-.copyright{
-
-    text-align:center;
-
-    margin-top:25px;
-
-    color:#94a3b8;
-
-    font-size:12px;
-
-    letter-spacing:3px;
-
-}
-
-/* 모바일 */
-
-@media(max-width:480px){
-
-.startCard{
-
-    width:94%;
-
-    padding:30px 22px;
-
-}
-
-.logo h2{
-
-    font-size:38px;
-
-}
-
-.playerForm input{
-
-    padding:15px;
-
-}
-
-}
-/* ===========================
-   사원증 팝업
+   팝업
 =========================== */
 
 .hidden{
@@ -512,33 +370,31 @@ body{
 
     color:#222;
 
-    border-radius:24px;
+    border-radius:26px;
 
-    padding:30px;
+    padding:35px;
 
     text-align:center;
 
     animation:cardUp .35s ease;
 
-    box-shadow:0 25px 60px rgba(0,0,0,.35);
-
 }
 
 .idTitle{
 
-    font-size:24px;
+    font-size:26px;
 
     font-weight:800;
 
-    margin-bottom:30px;
+    margin-bottom:28px;
 
 }
 
 .idName{
 
-    font-size:28px;
+    font-size:30px;
 
-    font-weight:800;
+    font-weight:900;
 
     margin-bottom:12px;
 
@@ -552,13 +408,13 @@ body{
 
 }
 
-.idNumber{
-
-    font-size:20px;
-
-    font-weight:700;
+.idReady{
 
     color:#2563eb;
+
+    font-size:18px;
+
+    font-weight:700;
 
     margin-bottom:30px;
 
@@ -572,7 +428,7 @@ body{
 
     border:none;
 
-    border-radius:14px;
+    border-radius:16px;
 
     background:#2563eb;
 
@@ -583,6 +439,30 @@ body{
     font-weight:700;
 
     cursor:pointer;
+
+}
+
+/* ===========================
+   애니메이션
+=========================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
 
 }
 
@@ -605,4 +485,29 @@ body{
     }
 
 }
+
+/* ===========================
+   모바일
+=========================== */
+
+@media(max-width:480px){
+
+.startCard{
+
+    padding:30px 22px;
+
+}
+
+.logo h2{
+
+    font-size:38px;
+
+}
+
+.playerForm input{
+
+    padding:15px;
+
+}
+
 }
