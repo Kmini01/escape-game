@@ -476,4 +476,133 @@ body{
 }
 
 }
+/* ===========================
+   사원증 팝업
+=========================== */
+
+.hidden{
+
+    display:none;
+
+}
+
+#idCardModal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.65);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+.idCard{
+
+    width:320px;
+
+    background:white;
+
+    color:#222;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    text-align:center;
+
+    animation:cardUp .35s ease;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
+
+}
+
+.idTitle{
+
+    font-size:24px;
+
+    font-weight:800;
+
+    margin-bottom:30px;
+
+}
+
+.idName{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    margin-bottom:12px;
+
+}
+
+.idJob{
+
+    color:#666;
+
+    margin-bottom:18px;
+
+}
+
+.idNumber{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#2563eb;
+
+    margin-bottom:30px;
+
+}
+
+#closeCardButton{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+@keyframes cardUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px) scale(.9);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
 }
