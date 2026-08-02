@@ -29,9 +29,7 @@
             <div class="logo">
 
                 <div class="missionLabel">
-
                     🎮 LEVEL 1
-
                 </div>
 
                 <h1>MISSION</h1>
@@ -39,10 +37,8 @@
                 <h2>칼퇴 대작전!</h2>
 
                 <p>
-
                     오늘 하루,<br>
                     당신의 선택이 퇴근을 결정합니다.
-
                 </p>
 
             </div>
@@ -50,9 +46,7 @@
             <div class="playerForm">
 
                 <label for="playerName">
-
                     이름
-
                 </label>
 
                 <input
@@ -62,9 +56,7 @@
                     placeholder="이름을 입력하세요">
 
                 <label>
-
                     성별
-
                 </label>
 
                 <div class="genderGroup">
@@ -93,7 +85,7 @@
                     type="button"
                     id="idCardButton">
 
-                    🪪 사원증 발급
+                    🪪 출근 준비 완료
 
                 </button>
 
@@ -110,6 +102,48 @@
         </div>
 
     </main>
+
+    <!-- 출근 준비 완료 팝업 -->
+
+    <div id="idCardModal" class="hidden">
+
+        <div class="idCard">
+
+            <div class="idTitle">
+
+                🎉 출근 준비 완료
+
+            </div>
+
+            <div class="idName" id="cardName">
+
+                홍길동
+
+            </div>
+
+            <div class="idJob">
+
+                신입사원
+
+            </div>
+
+            <div class="idReady">
+
+                오늘 하루도 힘내세요!
+
+            </div>
+
+            <button
+                type="button"
+                id="closeCardButton">
+
+                출근하기
+
+            </button>
+
+        </div>
+
+    </div>
 
     <script src="js/app.js"></script>
 
