@@ -323,7 +323,6 @@ function selectAnswer(answer){
 
 }
 // ==========================
-// Part 3
 // 다음 버튼
 // ==========================
 
@@ -335,10 +334,21 @@ document
     .getElementById("resultModal")
     .classList.add("hidden");
 
-    showMission2();
+    if(game.progress===10){
+
+        showMission2();
+
+    }
+
+    else if(game.progress===20){
+
+        showMission3();
+
+    }
 
 });
- updateHUD();
+
+updateHUD();
 // ==========================
 // 초기 HUD
 // ==========================
@@ -632,5 +642,58 @@ function checkMission2(){
         );
 
     }
+
+}
+// ==========================
+// Mission 3
+// 이메일 확인
+// ==========================
+
+function showMission3(){
+
+    document.body.insertAdjacentHTML("beforeend",`
+
+<div id="missionContainer">
+
+    <div class="missionCard">
+
+        <div class="missionLabel">
+            📧 MISSION 3
+        </div>
+
+        <h2>
+
+            이메일 확인
+
+        </h2>
+
+        <p>
+
+            출근 후 받은 메일 중<br>
+
+            가장 먼저 확인해야 하는 메일을 선택하세요.
+
+        </p>
+
+       <button class="choiceBtn" onclick="selectMission3(1)">
+📢 전사 공지
+</button>
+
+<button class="choiceBtn" onclick="selectMission3(2)">
+👥 팀장 업무지시
+</button>
+
+<button class="choiceBtn" onclick="selectMission3(3)">
+☕ 사내 동호회 안내
+</button>
+
+<button class="choiceBtn" onclick="selectMission3(4)">
+🎁 이벤트 광고
+</button>
+    </div>
+
+</div>
+
+`);
 
 }
