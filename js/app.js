@@ -338,12 +338,10 @@ document
     showMission2();
 
 });
-
+ updateHUD();
 // ==========================
 // 초기 HUD
 // ==========================
-
-updateHUD();
 
 // ==========================
 // Mission 2
@@ -375,56 +373,73 @@ function showMission2(){
 
             <div class="timeRow">
                 <div class="time">09:00</div>
-                <div
-                    class="dropZone"
-                    data-answer="email"
-                    ondragover="allowDrop(event)"
-                    ondrop="drop(event)">
+
+                <div class="dropZone"
+                     data-answer="email"
+                     ondragover="allowDrop(event)"
+                     ondrop="drop(event)">
                 </div>
+
             </div>
 
             <div class="timeRow">
                 <div class="time">09:15</div>
-                <div
-                    class="dropZone"
-                    data-answer="print"
-                    ondragover="allowDrop(event)"
-                    ondrop="drop(event)">
+
+                <div class="dropZone"
+                     data-answer="print"
+                     ondragover="allowDrop(event)"
+                     ondrop="drop(event)">
                 </div>
+
             </div>
 
             <div class="timeRow">
                 <div class="time">09:35</div>
-                <div
-                    class="dropZone"
-                    data-answer="call"
-                    ondragover="allowDrop(event)"
-                    ondrop="drop(event)">
+
+                <div class="dropZone"
+                     data-answer="call"
+                     ondragover="allowDrop(event)"
+                     ondrop="drop(event)">
                 </div>
+
             </div>
 
             <div class="timeRow fixed">
-                <div class="time">10:00</div>
+
+                <div class="time">
+                    10:00
+                </div>
+
                 <div class="fixedTask">
                     👥 팀회의 (30분)
                 </div>
+
             </div>
 
             <div class="timeRow">
-                <div class="time">10:30</div>
-                <div
-                    class="dropZone"
-                    data-answer="report"
-                    ondragover="allowDrop(event)"
-                    ondrop="drop(event)">
+
+                <div class="time">
+                    10:30
                 </div>
+
+                <div class="dropZone"
+                     data-answer="report"
+                     ondragover="allowDrop(event)"
+                     ondrop="drop(event)">
+                </div>
+
             </div>
 
             <div class="timeRow fixed">
-                <div class="time">12:00</div>
+
+                <div class="time">
+                    12:00
+                </div>
+
                 <div class="fixedTask">
                     🍱 점심시간
                 </div>
+
             </div>
 
         </div>
@@ -433,44 +448,48 @@ function showMission2(){
 
         <div id="taskArea">
 
-            <div
-                class="taskCard"
-                id="email"
-                draggable="true"
-                ondragstart="drag(event)">
+            <div class="taskCard"
+                 id="email"
+                 draggable="true"
+                 ondragstart="drag(event)">
+
                 📧 이메일 확인
                 <br>
                 <small>15분</small>
+
             </div>
 
-            <div
-                class="taskCard"
-                id="print"
-                draggable="true"
-                ondragstart="drag(event)">
+            <div class="taskCard"
+                 id="print"
+                 draggable="true"
+                 ondragstart="drag(event)">
+
                 📑 회의자료 출력
                 <br>
                 <small>20분</small>
+
             </div>
 
-            <div
-                class="taskCard"
-                id="call"
-                draggable="true"
-                ondragstart="drag(event)">
+            <div class="taskCard"
+                 id="call"
+                 draggable="true"
+                 ondragstart="drag(event)">
+
                 📞 거래처 전화
                 <br>
                 <small>20분</small>
+
             </div>
 
-            <div
-                class="taskCard"
-                id="report"
-                draggable="true"
-                ondragstart="drag(event)">
+            <div class="taskCard"
+                 id="report"
+                 draggable="true"
+                 ondragstart="drag(event)">
+
                 📊 업무보고 작성
                 <br>
                 <small>60분</small>
+
             </div>
 
         </div>
@@ -478,7 +497,9 @@ function showMission2(){
         <button
             id="checkScheduleButton"
             onclick="checkMission2()">
+
             ✅ 일정 확인
+
         </button>
 
     </div>
@@ -496,6 +517,8 @@ function drag(event){
 
     draggedTask = event.target.id;
 
+    event.dataTransfer.setData("text", draggedTask);
+
 }
 
 function allowDrop(event){
@@ -508,29 +531,51 @@ function drop(event){
 
     event.preventDefault();
 
+    const taskId = event.dataTransfer.getData("text");
+
+    const task = document.getElementById(taskId);
+
     const zone = event.target.closest(".dropZone");
 
     if(!zone) return;
 
-    const task = document.getElementById(draggedTask);
+    // 이미 카드가 있으면 서로 교체
+    if(zone.firstElementChild){
 
-    const oldZone = task.parentElement;
+        const existTask = zone.firstElementChild;
 
-    if(oldZone.classList.contains("dropZone")){
+        const oldParent = task.parentElement;
 
-        oldZone.innerHTML = "";
+        zone.appendChild(task);
+
+        if(oldParent.id === "taskArea"){
+
+            oldParent.appendChild(existTask);
+
+        }else{
+
+            oldParent.appendChild(existTask);
+
+        }
 
     }
 
-    if(zone.children.length > 0){
+    else{
 
-        return;
+        const oldParent = task.parentElement;
+
+        zone.appendChild(task);
+
+        if(oldParent.classList.contains("dropZone")){
+
+            // 기존 슬롯은 비워둠
+
+        }
 
     }
-
-    zone.appendChild(task);
 
 }
+
 // ==========================
 // Mission 2 정답 확인
 // ==========================
@@ -566,10 +611,12 @@ function checkMission2(){
         showResult(
             "🎉",
             "일정 계획 완료!",
-            "업무를 우선순위에 맞게 계획했습니다.<br><br>⭐ 업무점수 +20<br>❤️ 신뢰도 +5"
+            "회의 시간을 고려하여 업무를 올바르게 배치했습니다.<br><br>⭐ 업무점수 +20<br>❤️ 신뢰도 +5"
         );
 
-    }else{
+    }
+
+    else{
 
         game.score -= 10;
         game.trust -= 5;
@@ -581,7 +628,7 @@ function checkMission2(){
         showResult(
             "❌",
             "일정 계획 실패",
-            "회의 시간을 고려하여<br>업무를 다시 계획해보세요.<br><br>⭐ 업무점수 -10<br>❤️ 신뢰도 -5"
+            "회의 전에 필요한 업무 순서를 다시 확인해보세요.<br><br>⭐ 업무점수 -10<br>❤️ 신뢰도 -5"
         );
 
     }
