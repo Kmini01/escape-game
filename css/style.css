@@ -1054,3 +1054,127 @@ transform:scale(.96);
     }
 
 }
+/* ===========================
+   Mission 5
+   파일 선택
+=========================== */
+
+.fileList{
+
+    margin:25px 0;
+
+    border:1px solid #dbeafe;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+}
+
+.fileItem{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:16px 18px;
+
+    background:white;
+
+    border-bottom:1px solid #e5e7eb;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    user-select:none;
+
+}
+
+.fileItem:last-child{
+
+    border-bottom:none;
+
+}
+
+.fileItem:hover{
+
+    background:#eff6ff;
+
+}
+
+.fileItem.selected{
+
+    background:#2563EB;
+
+    color:white;
+
+}
+
+.fileIcon{
+
+    font-size:22px;
+
+    width:30px;
+
+    text-align:center;
+
+}
+
+.fileName{
+
+    flex:1;
+
+    font-weight:700;
+
+}
+
+.fileDate{
+
+    color:#64748b;
+
+    font-size:13px;
+
+}
+
+.fileItem.selected .fileDate{
+
+    color:#dbeafe;
+
+}
+
+#checkMission5Button{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#16a34a;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+#checkMission5Button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 20px rgba(22,163,74,.3);
+
+}
