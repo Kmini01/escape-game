@@ -827,3 +827,230 @@ transform:scale(.96);
     color:#FACC15;
 
 }
+/* ===========================
+   Mission 2 : 일정표
+=========================== */
+
+.missionSchedule{
+
+    max-width:700px;
+
+}
+
+.scheduleArea{
+
+    margin:25px 0;
+
+    border:2px solid #dbeafe;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+}
+
+.timeRow{
+
+    display:flex;
+
+    align-items:center;
+
+    border-bottom:1px solid #e5e7eb;
+
+    min-height:70px;
+
+}
+
+.timeRow:last-child{
+
+    border-bottom:none;
+
+}
+
+.time{
+
+    width:110px;
+
+    background:#f8fafc;
+
+    font-weight:800;
+
+    color:#1e3a8a;
+
+    text-align:center;
+
+    padding:20px 10px;
+
+    border-right:1px solid #e5e7eb;
+
+}
+
+.dropZone{
+
+    flex:1;
+
+    min-height:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:white;
+
+    transition:.25s;
+
+}
+
+.dropZone:hover{
+
+    background:#eff6ff;
+
+}
+
+.fixedTask{
+
+    flex:1;
+
+    padding:20px;
+
+    background:#e0f2fe;
+
+    color:#0f172a;
+
+    font-weight:700;
+
+}
+
+#taskArea{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+    margin:25px 0;
+
+}
+
+.taskCard{
+
+    background:#EEF2FF;
+
+    border:2px solid #2563EB;
+
+    border-radius:16px;
+
+    padding:16px;
+
+    text-align:center;
+
+    font-weight:700;
+
+    cursor:grab;
+
+    transition:.25s;
+
+}
+
+.taskCard:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 18px rgba(37,99,235,.25);
+
+}
+
+.taskCard:active{
+
+    cursor:grabbing;
+
+    transform:scale(.96);
+
+}
+
+.taskCard small{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:#64748b;
+
+    font-size:13px;
+
+}
+
+#checkScheduleButton{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#16a34a;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+#checkScheduleButton:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 20px rgba(22,163,74,.3);
+
+}
+
+/* 드롭 성공 */
+
+.dropZone .taskCard{
+
+    width:95%;
+
+    margin:0;
+
+    cursor:default;
+
+    box-shadow:none;
+
+}
+
+/* 모바일 */
+
+@media(max-width:768px){
+
+    .missionSchedule{
+
+        max-width:95%;
+
+    }
+
+    #taskArea{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .time{
+
+        width:90px;
+
+        font-size:14px;
+
+    }
+
+}
