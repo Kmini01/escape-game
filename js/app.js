@@ -60,5 +60,59 @@ document.getElementById("startButton").addEventListener("click", () => {
         "님,\n\nMISSION : 칼퇴 대작전을 시작합니다!"
 
     );
+document
+.getElementById("idCardButton")
+.addEventListener("click",()=>{
 
+    const company=document
+    .getElementById("companyName")
+    .value
+    .trim();
+
+    const name=document
+    .getElementById("playerName")
+    .value
+    .trim();
+
+    if(company===""){
+
+        alert("회사명을 입력해주세요.");
+
+        return;
+
+    }
+
+    if(name===""){
+
+        alert("이름을 입력해주세요.");
+
+        return;
+
+    }
+
+    if(gender===""){
+
+        alert("성별을 선택해주세요.");
+
+        return;
+
+    }
+
+    alert(
+`━━━━━━━━━━━━━━
+
+사원증 발급 완료
+
+회사
+${company}
+
+이름
+${name}
+
+환영합니다!
+
+━━━━━━━━━━━━━━`
+    );
+
+});
 });
